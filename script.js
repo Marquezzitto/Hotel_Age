@@ -10,7 +10,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
-    applyActionCode // Função adicionada
+    applyActionCode
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
@@ -34,7 +34,6 @@ const db = getFirestore(app);
 // 2. LÓGICA GLOBAL (Roda em todas as páginas)
 // =================================================================
 
-// Observador que atualiza o menu se o usuário está logado ou não
 onAuthStateChanged(auth, (user) => {
     const navLogin = document.getElementById('nav-login');
     const navAccount = document.getElementById('nav-account');
@@ -51,14 +50,11 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Funcionalidade do botão de Sair (Logout)
 const logoutButton = document.getElementById('logout-button');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
         signOut(auth).then(() => {
             window.location.href = 'login.html';
-        }).catch((error) => {
-            console.error('Erro ao fazer logout:', error);
         });
     });
 }
@@ -68,17 +64,10 @@ if (logoutButton) {
 // 3. LÓGICAS DE PÁGINAS ESPECÍFICAS
 // =================================================================
 
-// --- Lógica da Calculadora ---
-const calculateBtn = document.getElementById('calculate-btn');
-if (calculateBtn) {
-    // ... (código da calculadora aqui, sem alterações)
-}
-
 // --- Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
     const registerMessage = document.getElementById('register-message');
-    
     const birthdateInput = document.getElementById('register-birthdate');
     if (birthdateInput) {
         flatpickr(birthdateInput, { "locale": "pt", dateFormat: "d/m/Y" });
@@ -89,11 +78,11 @@ if (registerForm) {
         registerMessage.style.display = 'none';
         
         const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
         const cpf = document.getElementById('register-cpf').value;
         const phone = document.getElementById('register-phone').value;
         const birthdate = birthdateInput.value;
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
 
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -109,11 +98,8 @@ if (registerForm) {
             registerForm.reset();
         } catch (error) {
             let friendlyMessage = 'Ocorreu um erro.';
-            if (error.code === 'auth/email-already-in-use') {
-                friendlyMessage = 'Este e-mail já está cadastrado.';
-            } else if (error.code === 'auth/weak-password') {
-                friendlyMessage = 'A senha precisa ter pelo menos 6 caracteres.';
-            }
+            if (error.code === 'auth/email-already-in-use') { friendlyMessage = 'Este e-mail já está cadastrado.'; } 
+            else if (error.code === 'auth/weak-password') { friendlyMessage = 'A senha precisa ter pelo menos 6 caracteres.'; }
             registerMessage.textContent = friendlyMessage;
             registerMessage.className = 'message-box error';
             registerMessage.style.display = 'block';
@@ -164,11 +150,7 @@ if (loginForm) {
     });
 }
 
-
-// =================================================================
-// 4. LÓGICA DA PÁGINA DE AÇÕES (actions.html) - BLOCO ADICIONADO
-// =================================================================
-
+// --- Lógica da Página de Ações (actions.html) ---
 const actionTitle = document.getElementById('action-title');
 if (actionTitle) {
     const params = new URLSearchParams(window.location.search);
@@ -186,10 +168,6 @@ if (actionTitle) {
         }).catch((error) => {
             actionTitle.textContent = 'Erro na Verificação';
             actionMessage.textContent = 'O link de verificação é inválido ou já expirou. Por favor, tente se cadastrar novamente.';
-            console.error(error);
         });
-    } else {
-        actionTitle.textContent = 'Página Inválida';
-        actionMessage.textContent = 'Esta página só pode ser acessada através de um link de e-mail.';
     }
 }
