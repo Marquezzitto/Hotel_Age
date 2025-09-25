@@ -214,3 +214,309 @@ footer {
     font-size: 0.9rem;
     border-top: 1px solid var(--cor-fundo-secao);
 }
+/* --- ESTILOS PARA PÁGINAS INTERNAS (COMO SUÍTES) --- */
+
+.page-title {
+    padding: 8rem 5% 4rem; /* Mais padding no topo por causa do header fixo */
+    text-align: center;
+    background-color: var(--cor-fundo-secao);
+}
+
+.page-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--cor-acento);
+    margin-bottom: 1rem;
+}
+
+.page-title p {
+    font-size: 1.1rem;
+    color: var(--cor-texto-secundario);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.suites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 4rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.suite-card {
+    background-color: var(--cor-fundo-secao);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.suite-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.suite-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.suite-card-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.suite-card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cor-acento);
+    margin-bottom: 1rem;
+}
+
+.suite-card-content p {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.suite-card-content .cta-button {
+    align-self: flex-start; /* Alinha o botão no início do container */
+    padding: 12px 28px;
+    font-size: 1rem;
+}
+/* --- ESTILOS PARA PÁGINA DE DETALHES DA SUÍTE --- */
+
+.suite-details-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Coluna da imagem maior que a de texto */
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 5% 4rem; /* Padding superior maior por causa do header */
+}
+
+.gallery .main-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.gallery .thumbnail-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.gallery .thumbnail-images img {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.gallery .thumbnail-images img:hover {
+    opacity: 0.8;
+}
+
+.suite-info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--cor-acento);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.suite-info .suite-description {
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 2rem;
+}
+
+.key-features {
+    display: flex;
+    gap: 2rem;
+    background-color: var(--cor-fundo-secao);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.suite-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cor-texto-principal);
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--cor-acento);
+    padding-left: 1rem;
+}
+
+.amenities-list {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas de comodidades */
+    gap: 0.8rem;
+}
+
+.amenities-list li {
+    color: var(--cor-texto-secundario);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+/* Adiciona um ícone de "check" antes de cada item */
+.amenities-list li::before {
+    content: '✔';
+    color: var(--cor-acento);
+    position: absolute;
+    left: 0;
+}
+
+.booking-box {
+    background-color: var(--cor-fundo-secao);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.booking-box .price {
+    margin-bottom: 1.5rem;
+}
+
+.booking-box .price span {
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+}
+
+.booking-box .price strong {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--cor-acento);
+}
+
+.booking-box .cta-button {
+    width: 100%;
+    padding: 16px;
+}
+/* --- ESTILOS PARA PÁGINA DE RESERVAS --- */
+
+.booking-form-container {
+    max-width: 800px;
+    margin: 2rem auto 4rem;
+    padding: 3rem;
+    background-color: var(--cor-fundo-secao);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+#reservation-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 1rem;
+    background-color: var(--cor-principal);
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#reservation-form .cta-button {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.price-summary-box {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px dashed #444;
+    border-radius: 10px;
+    background-color: var(--cor-principal);
+}
+
+.price-summary-box h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cor-acento);
+    margin-bottom: 1rem;
+}
+
+.price-summary-box p {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 0.8rem;
+    line-height: 1.8;
+}
+
+.price-summary-box hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 1rem 0;
+}
+
+.price-summary-box .total-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cor-acento);
+    text-align: right;
+}
+/* --- ESTILOS PARA PÁGINA DE LOGIN/CADASTRO --- */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 4rem 5%;
+    flex-wrap: wrap; /* Permite que os formulários quebrem a linha em telas menores */
+}
+
+.form-container {
+    background-color: var(--cor-fundo-secao);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px; /* Define uma largura máxima para os formulários */
+}
+
+.form-container h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cor-acento);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.form-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-container .cta-button {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+}
