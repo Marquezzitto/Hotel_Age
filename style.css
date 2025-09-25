@@ -2,11 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --cor-principal: #1a1a1a; /* Quase preto para o fundo */
-    --cor-acento: #c5a030; /* Dourado/Bronze para detalhes */
-    --cor-texto-principal: #e0e0e0; /* Branco suave para texto */
-    --cor-texto-secundario: #a0a0a0; /* Cinza claro para subtextos */
-    --cor-fundo-secao: #242424; /* Cinza escuro para seções */
+    --cor-principal: #1a1a1a;
+    --cor-acento: #ffc107;
+    --cor-acento-rgb: 255, 193, 7;
+    --cor-texto-principal: #f0f0f0;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-texto-secundario-rgb: 160, 160, 160;
+    --cor-fundo-secao: #242424;
+    --cor-borda-input: #333;
+    --cor-fundo-input: #222;
+    --cor-sucesso: #4CAF50;
+    --cor-erro: #f44336;
 }
 
 * {
@@ -26,12 +32,12 @@ body {
     line-height: 1.7;
 }
 
-/* --- CABEÇALHO E NAVEGAÇÃO COM EFEITO --- */
+/* --- CABEÇALHO E NAVEGAÇÃO --- */
 header {
-    background-color: rgba(26, 26, 26, 0.8); /* Fundo semi-transparente */
-    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
-    position: fixed; /* Fixado no topo */
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -92,12 +98,29 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--cor-texto-principal);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-button:hover {
+    color: var(--cor-acento);
+}
+
 /* --- BANNER PRINCIPAL (HERO SECTION) --- */
 .carousel-container {
     position: relative;
     text-align: center;
     color: white;
-    height: 100vh; /* Ocupa 100% da altura da tela inicial */
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,18 +140,15 @@ nav ul li a:hover::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Efeito de zoom sutil na imagem */
     transform: scale(1.05);
     animation: zoom-in-out 20s infinite alternate;
 }
 
-/* Animação para a imagem do banner */
 @keyframes zoom-in-out {
     from { transform: scale(1.05); }
     to { transform: scale(1.15); }
 }
 
-/* Overlay gradiente sobre a imagem para melhor leitura */
 .carousel-container::before {
     content: '';
     position: absolute;
@@ -148,7 +168,6 @@ nav ul li a:hover::after {
     animation: fade-in-up 1.2s ease-out;
 }
 
-/* Animação de entrada para o texto */
 @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -156,8 +175,8 @@ nav ul li a:hover::after {
 
 .carousel-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 4.rem; /* Tamanho ajustado */
-    line-height: 1.2; /* Espaçamento entre linhas */
+    font-size: 4.5rem;
+    line-height: 1.2;
     color: #fff;
     text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
     margin-bottom: 1.5rem;
@@ -177,7 +196,7 @@ nav ul li a:hover::after {
     padding: 16px 32px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 50px; /* Botão em formato de pílula */
+    border-radius: 50px;
     font-size: 1.1rem;
     transition: all 0.4s ease;
     text-transform: uppercase;
@@ -191,7 +210,7 @@ nav ul li a:hover::after {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-/* --- OUTRAS SEÇÕES --- */
+/* --- SEÇÕES DE CONTEÚDO --- */
 .info-section {
     padding: 5rem 5%;
     text-align: center;
@@ -205,21 +224,9 @@ nav ul li a:hover::after {
     margin-bottom: 1rem;
 }
 
-/* --- RODAPÉ --- */
-footer {
-    background-color: var(--cor-principal);
-    color: var(--cor-texto-secundario);
-    text-align: center;
-    padding: 3rem 5%;
-    font-size: 0.9rem;
-    border-top: 1px solid var(--cor-fundo-secao);
-}
-/* --- ESTILOS PARA PÁGINAS INTERNAS (COMO SUÍTES) --- */
-
 .page-title {
-    padding: 8rem 5% 4rem; /* Mais padding no topo por causa do header fixo */
+    padding: 8rem 0 4rem;
     text-align: center;
-    background-color: var(--cor-fundo-secao);
 }
 
 .page-title h1 {
@@ -236,6 +243,7 @@ footer {
     margin: 0 auto;
 }
 
+/* --- CARDS DE SUÍTES --- */
 .suites-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -287,19 +295,19 @@ footer {
 }
 
 .suite-card-content .cta-button {
-    align-self: flex-start; /* Alinha o botão no início do container */
+    align-self: flex-start;
     padding: 12px 28px;
     font-size: 1rem;
 }
-/* --- ESTILOS PARA PÁGINA DE DETALHES DA SUÍTE --- */
 
+/* --- PÁGINA DE DETALHES DA SUÍTE --- */
 .suite-details-container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Coluna da imagem maior que a de texto */
+    grid-template-columns: 1.5fr 1fr;
     gap: 3rem;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 8rem 5% 4rem; /* Padding superior maior por causa do header */
+    padding: 8rem 5% 4rem;
 }
 
 .gallery .main-image {
@@ -362,7 +370,7 @@ footer {
     list-style: none;
     margin-bottom: 2.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas de comodidades */
+    grid-template-columns: 1fr 1fr;
     gap: 0.8rem;
 }
 
@@ -372,7 +380,6 @@ footer {
     position: relative;
 }
 
-/* Adiciona um ícone de "check" antes de cada item */
 .amenities-list li::before {
     content: '✔';
     color: var(--cor-acento);
@@ -406,26 +413,50 @@ footer {
     width: 100%;
     padding: 16px;
 }
-/* --- ESTILOS PARA PÁGINA DE RESERVAS --- */
+
+/* --- FORMULÁRIOS E PÁGINAS DE LOGIN/REGISTRO --- */
+.auth-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.auth-container-single {
+    padding: 0 5% 4rem;
+}
 
 .booking-form-container {
-    max-width: 800px;
-    margin: 2rem auto 4rem;
+    max-width: 650px;
+    margin: 4rem auto;
     padding: 3rem;
     background-color: var(--cor-fundo-secao);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-#reservation-form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+.form-container {
+    background-color: var(--cor-fundo-secao);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.form-container h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cor-acento);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--cor-borda-input);
+    padding-bottom: 1rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -436,87 +467,105 @@ footer {
 
 .form-group input,
 .form-group select {
-    padding: 1rem;
-    background-color: var(--cor-principal);
-    border: 1px solid #444;
-    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--cor-borda-input);
+    border-radius: 8px;
+    background-color: var(--cor-fundo-input);
     color: var(--cor-texto-principal);
     font-size: 1rem;
-    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#reservation-form .cta-button {
-    margin-top: 1rem;
-    padding: 1rem;
-    width: 100%;
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--cor-acento);
+    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.3);
+    outline: none;
 }
 
-.price-summary-box {
-    margin-top: 3rem;
-    padding: 2rem;
-    border: 1px dashed #444;
-    border-radius: 10px;
-    background-color: var(--cor-principal);
-}
-
-.price-summary-box h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--cor-acento);
-    margin-bottom: 1rem;
-}
-
-.price-summary-box p {
-    color: var(--cor-texto-secundario);
-    margin-bottom: 0.8rem;
-    line-height: 1.8;
-}
-
-.price-summary-box hr {
-    border: none;
-    border-top: 1px solid #444;
-    margin: 1rem 0;
-}
-
-.price-summary-box .total-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--cor-acento);
-    text-align: right;
-}
-/* --- ESTILOS PARA PÁGINA DE LOGIN/CADASTRO --- */
-
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    padding: 4rem 5%;
-    flex-wrap: wrap; /* Permite que os formulários quebrem a linha em telas menores */
-}
-
-.form-container {
-    background-color: var(--cor-fundo-secao);
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 450px; /* Define uma largura máxima para os formulários */
-}
-
-.form-container h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--cor-acento);
+.form-switch-link {
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
 }
 
-.form-container .form-group {
-    margin-bottom: 1.5rem;
+.form-switch-link a {
+    color: var(--cor-acento);
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.form-container .cta-button {
+.form-container .cta-button,
+#reservation-form .cta-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
+    max-width: 320px;
     padding: 1rem;
     margin-top: 1rem;
+}
+
+.message-box {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.message-box.success {
+    background-color: #2f4e3c;
+    border: 1px solid var(--cor-sucesso);
+    color: #c8e6c9;
+}
+
+.message-box.error {
+    background-color: #5c2f2f;
+    border: 1px solid var(--cor-erro);
+    color: #ffcdd2;
+}
+
+
+/* --- RODAPÉ --- */
+footer {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    padding: 3rem 5%;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--cor-fundo-secao);
+}
+
+/* O CÓDIGO CORRIGIDO */
+
+/* Lista de Meses (Dropdown) - Fundo Branco e Texto Escuro */
+.flatpickr-monthDropdown-months {
+    background-color: #ffffff; /* Fundo branco para a lista */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+    background-color: #ffffff; /* Fundo branco para cada item */
+    color: #333; /* Texto escuro para os meses */
+}
+
+/* Efeito ao passar o mouse sobre o mês */
+.flatpickr-monthDropdown-months .flatpickr-monthDropdown-month:hover {
+    background-color: #f5f5f5; /* Cinza bem claro no hover */
+}
+
+/* Melhora a aparência do seletor de mês ao passar o mouse */
+.flatpickr-monthDropdown-months:hover {
+    background: var(--cor-fundo-input);
+}
+
+/* Dias da semana (Dom, Seg, Ter...) */
+.flatpickr-weekday {
+    color: var(--cor-texto-secundario); /* Voltamos para a cor secundária */
+    font-weight: bold; /* Mas mantemos o negrito para legibilidade */
 }
