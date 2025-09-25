@@ -39,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
     const navAccount = document.getElementById('nav-account');
     const navLogout = document.getElementById('nav-logout');
 
-    if (user && user.emailVerified) { // MUDANÇA: Só considera logado se o e-mail for verificado
+    if (user && user.emailVerified) {
         // Usuário logado e verificado
         navLogin.style.display = 'none';
         navAccount.style.display = 'list-item';
@@ -73,7 +73,43 @@ if (logoutButton) {
 // --- Lógica da Calculadora (só roda na página de reservas) ---
 const calculateBtn = document.getElementById('calculate-btn');
 if (calculateBtn) {
-    // ... (código da calculadora continua o mesmo, sem alterações)
+    const suiteSelect = document.getElementById('suite-type');
+    const checkinInput = document.getElementById('checkin-date');
+    const checkoutInput = document.getElementById('checkout-date');
+    const priceSummaryDiv = document.getElementById('price-summary');
+    
+    const suitePrices = { standard: 280, deluxe: 450, presidencial: 800 };
+
+    calculateBtn.addEventListener('click', () => {
+        const suiteType = suiteSelect.value;
+        const checkinDate = new Date(checkinInput.value);
+        const checkoutDate = new Date(checkoutInput.value);
+
+        if (!suiteType || !checkinInput.value || !checkoutInput.value) {
+            priceSummaryDiv.innerHTML = `<h2>Erro</h2><p style="color: #ff6b6b;">Por favor, preencha todos os campos.</p>`;
+            return;
+        }
+        if (checkoutDate <= checkinDate) {
+            priceSummaryDiv.innerHTML = `<h2>Erro</h2><p style="color: #ff6b6b;">A data de check-out deve ser posterior à data de check-in.</p>`;
+            return;
+        }
+
+        const timeDifference = checkoutDate.getTime() - checkinDate.getTime();
+        const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+        const pricePerNight = suitePrices[suiteType];
+        const totalPrice = numberOfNights * pricePerNight;
+        const suiteName = suiteSelect.options[suiteSelect.selectedIndex].text;
+
+        priceSummaryDiv.innerHTML = `
+            <h2>Resumo da Reserva</h2>
+            <p><strong>Suíte:</strong> ${suiteName}</p>
+            <p><strong>Check-in:</strong> ${checkinDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</p>
+            <p><strong>Check-out:</strong> ${checkoutDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</p>
+            <p><strong>Total de noites:</strong> ${numberOfNights}</p>
+            <hr>
+            <p class="total-price">Valor Total: R$ ${totalPrice.toFixed(2).replace('.', ',')}</p>
+        `;
+    });
 }
 
 // --- Lógica do Formulário de Cadastro (só roda na página de registro) ---
@@ -109,8 +145,7 @@ if (registerForm) {
             });
             
             await sendEmailVerification(auth.currentUser);
-
-            // MUDANÇA 1: Mostra a mensagem na página de registro e não redireciona mais
+            
             registerMessage.textContent = 'Cadastro realizado! Um link foi enviado para seu e-mail. Por favor, verifique sua conta para poder fazer o login.';
             registerMessage.className = 'message-box success';
             registerMessage.style.display = 'block';
@@ -135,39 +170,50 @@ const loginForm = document.getElementById('login-form');
 if (loginForm) {
     const loginMessage = document.getElementById('login-message');
     
-    loginForm.addEventListener('submit', (event) => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('status') === 'registered') {
+        loginMessage.textContent = 'Cadastro realizado com sucesso! Verifique seu e-mail e faça o login.';
+        loginMessage.className = 'message-box success';
+        loginMessage.style.display = 'block';
+    }
+    
+    // ATUALIZADO COM ASYNC/AWAIT E USER.RELOAD()
+    loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         loginMessage.style.display = 'none';
 
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            
+            // FORÇA a recarga dos dados do usuário do servidor
+            await userCredential.user.reload();
+            const refreshedUser = auth.currentUser;
 
-                // MUDANÇA 2: Verifica se o e-mail do usuário foi verificado
-                if (user && user.emailVerified) {
-                    // Se sim, o login é bem-sucedido
-                    loginMessage.textContent = 'Login efetuado com sucesso! Redirecionando...';
-                    loginMessage.className = 'message-box success';
-                    loginMessage.style.display = 'block';
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 2000);
-                } else {
-                    // Se não, impede o login e avisa o usuário
-                    signOut(auth); // Desloga o usuário preventivamente
-                    loginMessage.textContent = 'Seu e-mail ainda não foi verificado. Por favor, clique no link que enviamos para sua caixa de entrada.';
-                    loginMessage.className = 'message-box error';
-                    loginMessage.style.display = 'block';
-                }
-            })
-            .catch((error) => {
-                let friendlyMessage = 'E-mail ou senha incorretos. Tente novamente.';
-                loginMessage.textContent = friendlyMessage;
+            if (refreshedUser && refreshedUser.emailVerified) {
+                // Se o e-mail estiver verificado, o login é bem-sucedido
+                loginMessage.textContent = 'Login efetuado com sucesso! Redirecionando...';
+                loginMessage.className = 'message-box success';
+                loginMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                // Se não, impede o login e avisa o usuário
+                await signOut(auth); // Desloga o usuário preventivamente
+                loginMessage.textContent = 'Seu e-mail ainda não foi verificado. Por favor, clique no link que enviamos para sua caixa de entrada.';
                 loginMessage.className = 'message-box error';
                 loginMessage.style.display = 'block';
-            });
+            }
+        } catch (error) {
+            // Se o e-mail/senha estiverem errados, o erro será capturado aqui
+            console.error('Erro no login:', error.code);
+            let friendlyMessage = 'E-mail ou senha incorretos. Tente novamente.';
+            loginMessage.textContent = friendlyMessage;
+            loginMessage.className = 'message-box error';
+            loginMessage.style.display = 'block';
+        }
     });
 }
