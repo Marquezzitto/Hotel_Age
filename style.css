@@ -202,6 +202,26 @@ nav ul li a:hover::after {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+/* Centraliza todos os botões que precisam de centralização */
+.cta-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 320px;
+    padding: 1rem;
+    margin-top: 1rem;
+    /* Mantenha as outras regras de estilo do seu cta-button aqui */
+}
+
+/* Corrige o alinhamento dos botões na tela de reserva */
+#finalize-reservation-btn,
+#confirm-payment-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
+}
 
 .cta-button:hover {
     background-color: var(--cor-acento);
@@ -540,89 +560,32 @@ footer {
     border-top: 1px solid var(--cor-fundo-secao);
 }
 
-/* O CÓDIGO CORRIGIDO */
-
-/* Lista de Meses (Dropdown) - Fundo Branco e Texto Escuro */
-.flatpickr-monthDropdown-months {
-    background-color: #ffffff; /* Fundo branco para a lista */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
-    background-color: #ffffff; /* Fundo branco para cada item */
-    color: #333; /* Texto escuro para os meses */
-}
-
-/* Efeito ao passar o mouse sobre o mês */
-.flatpickr-monthDropdown-months .flatpickr-monthDropdown-month:hover {
-    background-color: #f5f5f5; /* Cinza bem claro no hover */
-}
-
-/* Melhora a aparência do seletor de mês ao passar o mouse */
-.flatpickr-monthDropdown-months:hover {
-    background: var(--cor-fundo-input);
-}
-
-/* Dias da semana (Dom, Seg, Ter...) */
-.flatpickr-weekday {
-    color: var(--cor-texto-secundario); /* Voltamos para a cor secundária */
-    font-weight: bold; /* Mas mantemos o negrito para legibilidade */
-}
-/* --- ESTILOS PARA O RESUMO DA RESERVA --- */
-
-.price-summary-box {
-    background-color: #242424; /* Fundo branco para contraste */
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave */
-}
-
-.price-summary-box h2 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    border-bottom: 2px solid #ffffff; /* Linha sutil */
-    padding-bottom: 10px;
-}
-
-/* Estilo para cada item do resumo (Diárias) */
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1em;
-    padding: 8px 0;
-    color: #555;
-}
-
-.summary-item strong {
-    color: #000;
-    font-weight: 600;
-}
-
-/* Separador (Linha tracejada antes do total) */
-.summary-separator {
-    border-top: 1px dashed #cccccc;
-    margin: 15px 0;
-}
-
-/* Destaque para o valor total */
-.summary-final-value {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.4em; /* Letra maior */
-    font-weight: 700;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    color: #1a73e8; /* Cor de destaque (Azul) */
-}
-
-/* Ajuste para o botão de finalizar */
-#finalize-reservation-btn {
+/* --- ESTILOS ADICIONAIS NECESSÁRIOS PARA NOVOS ELEMENTOS --- */
+.secondary-button {
+    background-color: transparent;
+    color: var(--cor-texto-secundario);
+    border: 1px solid var(--cor-texto-secundario);
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
     width: 100%;
-    padding: 12px;
+    display: block;
+}
+
+.secondary-button:hover {
+    color: var(--cor-texto-principal);
+    border-color: var(--cor-texto-principal);
+}
+
+.final-price-note {
     font-size: 1.1em;
-    margin-top: 15px;
+    padding: 10px 0;
+    text-align: center;
+    border: 1px dashed var(--cor-borda-input);
+    border-radius: 4px;
+    margin: 20px 0;
+    background-color: var(--cor-fundo-input);
 }
