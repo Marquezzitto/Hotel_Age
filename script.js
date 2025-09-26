@@ -73,8 +73,51 @@ if (logoutButton) {
 
 // --- Lógica da Calculadora ---
 const calculateBtn = document.getElementById('calculate-btn');
+
 if (calculateBtn) {
-    // ... (código da calculadora aqui, sem alterações)
+    // 1. Definição dos Preços Diários (Ajuste estes valores!)
+    const PRICES = {
+        standard: 150.00,
+        deluxe: 300.00,
+        presidencial: 750.00
+    };
+
+    calculateBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Evita que o formulário recarregue a página
+
+        // 2. Leitura dos Inputs (Confirme se estes IDs estão corretos no seu HTML)
+        const checkinInput = document.getElementById('checkin-date');
+        const checkoutInput = document.getElementById('checkout-date');
+        const suiteSelect = document.getElementById('suite-type');
+        const totalDisplay = document.getElementById('reservation-total'); // ID do elemento onde o total será exibido
+
+        const checkinDate = new Date(checkinInput.value);
+        const checkoutDate = new Date(checkoutInput.value);
+        const suiteType = suiteSelect.value;
+        
+        // 3. Validação Básica
+        if (!checkinDate || !checkoutDate || checkinDate >= checkoutDate || !suiteType) {
+            alert("Por favor, selecione datas válidas e o tipo de suíte.");
+            return;
+        }
+
+        // 4. Cálculo da Diferença de Dias
+        const diffTime = Math.abs(checkoutDate - checkinDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+        // 5. Cálculo do Valor Total
+        const pricePerNight = PRICES[suiteType] || 0;
+        const totalValue = diffDays * pricePerNight;
+
+        // 6. Exibição do Resultado
+        if (totalValue > 0) {
+            totalDisplay.textContent = `Total: R$ ${totalValue.toFixed(2)}`;
+            totalDisplay.style.display = 'block';
+        } else {
+            totalDisplay.textContent = 'Erro no cálculo. Verifique as datas e o tipo de suíte.';
+            totalDisplay.style.display = 'block';
+        }
+    });
 }
 
 // --- Lógica do Formulário de Cadastro ---
