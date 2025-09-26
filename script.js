@@ -6,12 +6,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebas
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
-    // REMOVIDA: Não precisamos importar esta função, pois não será usada.
-    // sendEmailVerification, 
+    // sendEmailVerification, (Removida)
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
-    applyActionCode // Função adicionada
+    applyActionCode 
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
@@ -41,8 +40,7 @@ onAuthStateChanged(auth, (user) => {
     const navAccount = document.getElementById('nav-account');
     const navLogout = document.getElementById('nav-logout');
 
-    // MUDANÇA 1: Removida a verificação 'user.emailVerified'.
-    // Agora o menu de conta aparece para qualquer usuário logado.
+    // Usuário logado aparece a conta, sem verificação de e-mail.
     if (user) { 
         navLogin.style.display = 'none';
         navAccount.style.display = 'list-item';
@@ -74,18 +72,8 @@ if (logoutButton) {
 // --- Lógica da Calculadora ---
 const calculateBtn = document.getElementById('calculate-btn');
 
-// Função de conversão para o formato YYYY-MM-DD
-function convertDate(dateStr) {
-    if (!dateStr) return null;
-    // O input type="date" do HTML já retorna YYYY-MM-DD, 
-    // então esta função não é necessária, mas é uma boa prática
-    // caso você mude o input type ou use flatpickr aqui. 
-    // Vamos manter por segurança, mas o new Date() deve funcionar direto com o input type="date".
-    return dateStr; 
-}
-
 if (calculateBtn) {
-    // 1. Definição dos Preços Diários (Ajuste estes valores!)
+    // 1. Definição dos Preços Diários (Ajuste estes valores se necessário!)
     const PRICES = {
         standard: 150.00,
         deluxe: 300.00,
@@ -95,22 +83,26 @@ if (calculateBtn) {
     calculateBtn.addEventListener('click', (event) => {
         event.preventDefault();
 
-        // 2. Leitura dos Inputs (Os IDs estão corretos!)
+        // 2. Leitura dos Inputs
         const checkinInput = document.getElementById('checkin-date');
         const checkoutInput = document.getElementById('checkout-date');
         const suiteSelect = document.getElementById('suite-type');
         
-        // CORRIGIDO: Agora aponta para o ID adicionado no parágrafo do HTML
-        const totalDisplay = document.getElementById('reservation-total'); 
+        // Elementos de Exibição
+        const resultsDetails = document.getElementById('results-details');
+        const summaryDays = document.getElementById('summary-days');
+        const summaryTotal = document.getElementById('summary-total');
+        const totalMessage = document.getElementById('reservation-total-message');
 
-        // Como o input é type="date", o formato é YYYY-MM-DD
         const checkinDate = new Date(checkinInput.value);
         const checkoutDate = new Date(checkoutInput.value);
         const suiteType = suiteSelect.value;
         
         // 3. Validação
         if (!checkinInput.value || !checkoutInput.value || checkinDate >= checkoutDate || !suiteType) {
-            totalDisplay.textContent = 'Erro! Por favor, selecione datas válidas e o tipo de suíte.';
+            totalMessage.textContent = 'Erro! Por favor, selecione datas válidas e o tipo de suíte.';
+            totalMessage.style.display = 'block';
+            if(resultsDetails) resultsDetails.style.display = 'none';
             return;
         }
         
@@ -122,49 +114,44 @@ if (calculateBtn) {
         const pricePerNight = PRICES[suiteType] || 0;
         const totalValue = diffDays * pricePerNight;
 
-        // Dentro do calculateBtn.addEventListener('click', ...)
-
-        // ... (todas as validações e cálculos)
-
-        // 6. Exibição do Resultado (NOVA LÓGICA)
-        const resultsDetails = document.getElementById('results-details');
-        const summaryDays = document.getElementById('summary-days');
-        const summaryTotal = document.getElementById('summary-total');
-        const totalMessage = document.getElementById('reservation-total-message');
-
+        // 6. Exibição do Resultado
         if (totalValue > 0) {
-            // 6.1 Sucesso: Atualiza os detalhes
             summaryDays.textContent = `${diffDays}`;
-            summaryTotal.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`; // Formato BR
+            summaryTotal.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
             
-            resultsDetails.style.display = 'block'; // Mostra o bloco de detalhes
-            totalMessage.style.display = 'none';    // Esconde a mensagem inicial
+            if(resultsDetails) resultsDetails.style.display = 'block';
+            if(totalMessage) totalMessage.style.display = 'none';
         } else {
-            // 6.2 Erro: Volta a exibir a mensagem de erro
             totalMessage.textContent = 'Erro no cálculo. O valor deve ser positivo e as datas válidas.';
             totalMessage.style.display = 'block';
-            resultsDetails.style.display = 'none';
+            if(resultsDetails) resultsDetails.style.display = 'none';
         }
     });
 }
+
+
 // --- Lógica do Botão de Finalizar Reserva ---
-
 const finalizeReservationBtn = document.getElementById('finalize-reservation-btn');
-const reservationForm = document.getElementById('reservation-form'); // O formulário inteiro
 
-if (finalizeReservationBtn && reservationForm) {
+if (finalizeReservationBtn) {
     finalizeReservationBtn.addEventListener('click', async () => {
-        // 1. **COLETA DE DADOS:** Pega os valores que já foram validados no cálculo.
+        // 1. **COLETA DE DADOS:** Pega os valores
         const checkinDate = document.getElementById('checkin-date').value;
         const checkoutDate = document.getElementById('checkout-date').value;
         const suiteType = document.getElementById('suite-type').value;
 
-        // Assumindo que você já tem o valor total calculado e visível,
-        // mas é mais seguro recalcular ou pegar o valor do HTML
-        const totalText = document.getElementById('summary-total').textContent;
+        // Pega o valor total do HTML.
+        const summaryTotalElement = document.getElementById('summary-total');
+        const totalText = summaryTotalElement ? summaryTotalElement.textContent : 'R$ 0,00';
         const totalValue = parseFloat(totalText.replace('R$', '').replace(',', '.'));
         
-        // 2. **VERIFICAÇÃO DE LOGIN:** O usuário deve estar logado
+        // 2. **VERIFICAÇÃO DE PRÉ-REQUISITOS:**
+        if (totalValue === 0) {
+            alert('Por favor, calcule e valide o valor da reserva primeiro.');
+            return;
+        }
+
+        // 3. **VERIFICAÇÃO DE LOGIN:**
         const user = auth.currentUser;
         if (!user) {
             alert('Você precisa estar logado para finalizar uma reserva. Redirecionando para o login...');
@@ -172,9 +159,8 @@ if (finalizeReservationBtn && reservationForm) {
             return;
         }
 
-        // 3. **SALVAR NO FIREBASE:**
+        // 4. **SALVAR NO FIREBASE:**
         try {
-            // Cria um ID único para a reserva (usa a data atual como parte)
             const reservationId = user.uid + '_' + new Date().getTime(); 
             
             await setDoc(doc(db, "reservations", reservationId), {
@@ -184,27 +170,28 @@ if (finalizeReservationBtn && reservationForm) {
                 checkIn: checkinDate,
                 checkOut: checkoutDate,
                 totalValue: totalValue,
-                status: 'Pendente' // Você pode definir o status inicial
+                status: 'Pendente' // Status inicial
             });
 
-            alert('Reserva finalizada com sucesso! Verifique seu e-mail para confirmação.');
-            // Redireciona para a página inicial ou de confirmação
+            alert('Reserva finalizada com sucesso! Você será redirecionado para a página inicial.');
             window.location.href = 'index.html'; 
 
         } catch (error) {
             console.error("Erro ao salvar a reserva:", error);
-            alert('Não foi possível finalizar a reserva. Tente novamente.');
+            alert('Não foi possível finalizar a reserva. Verifique sua conexão e tente novamente.');
         }
     });
 }
+
 // --- Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
     const registerMessage = document.getElementById('register-message');
-    
     const birthdateInput = document.getElementById('register-birthdate');
+    
+    // Adicione esta linha de volta se você usa o flatpickr na página de registro
     if (birthdateInput) {
-        flatpickr(birthdateInput, { "locale": "pt", dateFormat: "d/m/Y" });
+        //flatpickr(birthdateInput, { "locale": "pt", dateFormat: "d/m/Y" });
     }
 
     registerForm.addEventListener('submit', async (event) => { 
@@ -225,10 +212,8 @@ if (registerForm) {
                 nome: name, email: email, cpf: cpf, telefone: phone, dataNascimento: birthdate
             });
             
-            // MUDANÇA 2: Linha de verificação de e-mail REMOVIDA.
-            // await sendEmailVerification(auth.currentUser); 
+            // Verificação de e-mail removida.
             
-            // MUDANÇA 3: Texto de notificação alterado para refletir o sucesso imediato.
             registerMessage.textContent = 'Cadastro realizado com sucesso! Você já pode fazer login e usar o site.';
             registerMessage.className = 'message-box success';
             registerMessage.style.display = 'block';
@@ -254,7 +239,6 @@ if (loginForm) {
     
     const params = new URLSearchParams(window.location.search);
     if (params.get('status') === 'registered') {
-        // Texto de notificação ajustado na página de login.
         loginMessage.textContent = 'Cadastro realizado com sucesso! Agora você já pode fazer o login.';
         loginMessage.className = 'message-box success';
         loginMessage.style.display = 'block';
@@ -268,14 +252,8 @@ if (loginForm) {
         const password = document.getElementById('login-password').value;
 
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            // userCredential.user.reload() não é mais estritamente necessário, 
-            // mas mantive, pois não causa erro.
-            // await userCredential.user.reload();
-            // const refreshedUser = auth.currentUser; // Não precisamos disso.
-
-            // Removido o bloco IF/ELSE que checava a verificação de e-mail.
-            // O usuário agora faz login diretamente.
+            await signInWithEmailAndPassword(auth, email, password);
+            
             loginMessage.textContent = 'Login efetuado com sucesso! Redirecionando...';
             loginMessage.className = 'message-box success';
             loginMessage.style.display = 'block';
@@ -291,11 +269,5 @@ if (loginForm) {
 
 
 // =================================================================
-// 4. LÓGICA DA PÁGINA DE AÇÕES (actions.html) - BLOCO REMOVIDO
+// 4. LÓGICA DA PÁGINA DE AÇÕES (actions.html) - REMOVIDA
 // =================================================================
-
-// O bloco de lógica para a página 'actions.html' foi removido porque não é mais necessário,
-// já que a verificação de e-mail foi desativada e não haverá links de verificação enviados.
-// Você pode remover o conteúdo HTML de actions.html também.
-
-
