@@ -569,3 +569,60 @@ footer {
     color: var(--cor-texto-secundario); /* Voltamos para a cor secundária */
     font-weight: bold; /* Mas mantemos o negrito para legibilidade */
 }
+/* --- ESTILOS PARA O RESUMO DA RESERVA --- */
+
+.price-summary-box {
+    background-color: #ffffff; /* Fundo branco para contraste */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave */
+}
+
+.price-summary-box h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #f0f0f0; /* Linha sutil */
+    padding-bottom: 10px;
+}
+
+/* Estilo para cada item do resumo (Diárias) */
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    padding: 8px 0;
+    color: #555;
+}
+
+.summary-item strong {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Separador (Linha tracejada antes do total) */
+.summary-separator {
+    border-top: 1px dashed #cccccc;
+    margin: 15px 0;
+}
+
+/* Destaque para o valor total */
+.summary-final-value {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4em; /* Letra maior */
+    font-weight: 700;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    color: #1a73e8; /* Cor de destaque (Azul) */
+}
+
+/* Ajuste para o botão de finalizar */
+#finalize-reservation-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 15px;
+}
