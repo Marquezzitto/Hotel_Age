@@ -58,7 +58,21 @@
 
             <div id="price-summary" class="price-summary-box">
                 <h2>Resumo da Reserva</h2>
-                <p id="reservation-total">Por favor, preencha os campos acima para calcular o valor da sua estadia.</p>
+                
+                <p id="reservation-total-message">Por favor, preencha os campos acima para calcular o valor da sua estadia.</p>
+
+                <div id="results-details" style="display: none;"> 
+                    <div class="summary-item">
+                        <span>Diárias Selecionadas:</span>
+                        <strong id="summary-days">0</strong>
+                    </div>
+                    <div class="summary-separator"></div>
+                    <div class="summary-final-value">
+                        <span>Valor Total:</span>
+                        <strong id="summary-total">R$ 0,00</strong>
+                    </div>
+                    <button id="finalize-reservation-btn" class="cta-button">Finalizar Reserva</button>
+                </div>
             </div>
         </section>
     </main>
