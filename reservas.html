@@ -1,82 +1,118 @@
-<main>
-    <section class="page-title">
-        <h1>Reserve sua Estadia</h1>
-        <p>Selecione as datas e a suíte desejada para ver os valores.</p>
-    </section>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça sua Reserva - Hotel Age</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <section class="booking-form-container">
-        <form id="reservation-form">
-            <div class="form-group">
-                <label for="suite-type">Tipo de Suíte:</label>
-                <select id="suite-type" name="suite-type">
-                    <option value="">Selecione uma suíte</option>
-                    <option value="standard">Suíte Standard</option>
-                    <option value="deluxe">Suíte Deluxe</option>
-                    <option value="presidencial">Suíte Presidencial</option>
-                </select>
-            </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Hotel Age</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="suites.html">Suítes</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li id="nav-login"><a href="login.html">Login</a></li>
+                <li id="nav-account" style="display: none;"><a href="conta.html">Minha Conta</a></li>
+                <li id="nav-logout" style="display: none;"><button id="logout-button" class="nav-button">Sair</button></li>
+            </ul>
+            </nav>
+    </header>
 
-            <div class="form-group">
-                <label for="checkin-date">Data de Check-in:</label>
-                <input type="date" id="checkin-date" name="checkin-date">
-            </div>
+        <main>
+        <section class="page-title">
+            <h1>Reserve sua Estadia</h1>
+            <p>Selecione as datas e a suíte desejada para ver os valores.</p>
+        </section>
 
-            <div class="form-group">
-                <label for="checkout-date">Data de Check-out:</label>
-                <input type="date" id="checkout-date" name="checkout-date">
-            </div>
+        <section class="booking-form-container">
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="suite-type">Tipo de Suíte:</label>
+                    <select id="suite-type" name="suite-type">
+                        <option value="">Selecione uma suíte</option>
+                        <option value="standard">Suíte Standard</option>
+                        <option value="deluxe">Suíte Deluxe</option>
+                        <option value="presidencial">Suíte Presidencial</option>
+                    </select>
+                </div>
 
-            <button type="button" id="calculate-btn" class="cta-button">Calcular Valor</button>
-        </form>
+                <div class="form-group">
+                    <label for="checkin-date">Data de Check-in:</label>
+                    <input type="date" id="checkin-date" name="checkin-date">
+                </div>
 
-        <div id="price-summary" class="price-summary-box">
-            
-            <div id="reservation-summary-view">
-                <h2>Resumo da Reserva</h2>
-                
-                <p id="reservation-total-message">Por favor, preencha os campos acima para calcular o valor da sua estadia.</p>
+                <div class="form-group">
+                    <label for="checkout-date">Data de Check-out:</label>
+                    <input type="date" id="checkout-date" name="checkout-date">
+                </div>
 
-                <div id="results-details" style="display: none;"> 
-                    <div class="summary-item">
-                        <span>Suíte:</span>
-                        <strong id="summary-suite"></strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Diárias Selecionadas:</span>
-                        <strong id="summary-days">0</strong>
-                    </div>
-                    <div class="summary-separator"></div>
-                    <div class="summary-final-value">
-                        <span>VALOR TOTAL:</span>
-                        <strong id="summary-total">R$ 0,00</strong>
-                    </div>
-                    <button type="button" id="finalize-reservation-btn" class="cta-button">Finalizar Reserva</button>
-                </div>
-            </div>
+                <button type="button" id="calculate-btn" class="cta-button">Calcular Valor</button>
+            </form>
 
-            <div id="payment-form-view" style="display: none;">
-                <h2>Finalizar e Pagar</h2>
-                <form id="payment-form">
-                    <div class="form-group">
-                        <label for="payment-name">Nome Completo no Cartão:</label>
-                        <input type="text" id="payment-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="payment-method">Método de Pagamento:</label>
-                        <select id="payment-method" required>
-                            <option value="">Selecione...</option>
-                            <option value="credito">Cartão de Crédito</option>
-                            <option value="debito">Cartão de Débito</option>
-                            <option value="pix">PIX</option>
-                        </select>
-                    </div>
-                    <p class="final-price-note">Valor a ser pago: <strong id="payment-total-display">R$ 0,00</strong></p>
-                    
-                    <button type="submit" id="confirm-payment-btn" class="cta-button">Confirmar e Pagar</button>
-                    <button type="button" id="back-to-summary-btn" class="secondary-button">Voltar ao Resumo</button>
-                </form>
-                <p id="payment-message" class="message-box error" style="display:none;"></p>
-            </div>
-        </div>
-        </section>
-</main>
+                        <div id="price-summary" class="price-summary-box">
+                
+                                <div id="reservation-summary-view">
+                    <h2>Resumo da Reserva</h2>
+                    
+                                        <p id="reservation-total-message">Por favor, preencha os campos acima para calcular o valor da sua estadia.</p>
+
+                                        <div id="results-details" style="display: none;"> 
+                        <div class="summary-item">
+                            <span>Suíte:</span>
+                            <strong id="summary-suite"></strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Diárias Selecionadas:</span>
+                            <strong id="summary-days">0</strong>
+                        </div>
+                        <div class="summary-separator"></div>
+                        <div class="summary-final-value">
+                            <span>VALOR TOTAL:</span>
+                            <strong id="summary-total">R$ 0,00</strong>
+                        </div>
+                                                <button type="button" id="finalize-reservation-btn" class="cta-button">Finalizar Reserva</button>
+                    </div>
+                </div>
+
+                                <div id="payment-form-view" style="display: none;">
+                    <h2>Finalizar e Pagar</h2>
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="payment-name">Nome Completo no Cartão:</label>
+                            <input type="text" id="payment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">Método de Pagamento:</label>
+                            <select id="payment-method" required>
+                                <option value="">Selecione...</option>
+                                <option value="credito">Cartão de Crédito</option>
+                                <option value="debito">Cartão de Débito</option>
+                                <option value="pix">PIX</option>
+                            </select>
+                        </div>
+                        <p class="final-price-note">Valor a ser pago: <strong id="payment-total-display">R$ 0,00</strong></p>
+                        
+                        <button type="submit" id="confirm-payment-btn" class="cta-button">Confirmar e Pagar</button>
+                        <button type="button" id="back-to-summary-btn" class="secondary-button">Voltar ao Resumo</button>
+                    </form>
+                    <p id="payment-message" class="message-box error" style="display:none;"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hotel Age | CNPJ: 07.888.238/001</p>
+        <p>Endereço: RUA PALMEIRA DE LEQUE N° 45 | Telefone: (11) 930341120</p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
