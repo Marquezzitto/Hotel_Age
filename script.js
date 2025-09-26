@@ -74,15 +74,18 @@ if (logoutButton) {
 // --- Lógica da Calculadora ---
 const calculateBtn = document.getElementById('calculate-btn');
 
-// Função de conversão para o formato YYYY-MM-DD (necessário para new Date)
+// Função de conversão para o formato YYYY-MM-DD
 function convertDate(dateStr) {
     if (!dateStr) return null;
-    const [day, month, year] = dateStr.split('/');
-    return `${year}-${month}-${day}`;
+    // O input type="date" do HTML já retorna YYYY-MM-DD, 
+    // então esta função não é necessária, mas é uma boa prática
+    // caso você mude o input type ou use flatpickr aqui. 
+    // Vamos manter por segurança, mas o new Date() deve funcionar direto com o input type="date".
+    return dateStr; 
 }
 
 if (calculateBtn) {
-    // 1. Definição dos Preços Diários (MANTENHA ESTES VALORES)
+    // 1. Definição dos Preços Diários (Ajuste estes valores!)
     const PRICES = {
         standard: 150.00,
         deluxe: 300.00,
@@ -92,30 +95,27 @@ if (calculateBtn) {
     calculateBtn.addEventListener('click', (event) => {
         event.preventDefault();
 
-        // 2. Leitura dos Inputs (VERIFIQUE OS IDS NO SEU HTML!)
+        // 2. Leitura dos Inputs (Os IDs estão corretos!)
         const checkinInput = document.getElementById('checkin-date');
         const checkoutInput = document.getElementById('checkout-date');
         const suiteSelect = document.getElementById('suite-type');
+        
+        // CORRIGIDO: Agora aponta para o ID adicionado no parágrafo do HTML
         const totalDisplay = document.getElementById('reservation-total'); 
 
-        // Converte as datas antes de criar o objeto Date
-        const checkinDateStr = convertDate(checkinInput.value);
-        const checkoutDateStr = convertDate(checkoutInput.value);
-
-        const checkinDate = new Date(checkinDateStr);
-        const checkoutDate = new Date(checkoutDateStr);
+        // Como o input é type="date", o formato é YYYY-MM-DD
+        const checkinDate = new Date(checkinInput.value);
+        const checkoutDate = new Date(checkoutInput.value);
         const suiteType = suiteSelect.value;
         
-        // 3. Validação Aprimorada
-        if (!checkinDateStr || !checkoutDateStr || isNaN(checkinDate) || isNaN(checkoutDate) || checkinDate >= checkoutDate || !suiteType) {
-            alert("Erro! Por favor, verifique se todas as datas e a suíte foram selecionadas corretamente.");
-            totalDisplay.textContent = 'Preencha todos os campos corretamente.';
-            totalDisplay.style.display = 'block';
+        // 3. Validação
+        if (!checkinInput.value || !checkoutInput.value || checkinDate >= checkoutDate || !suiteType) {
+            totalDisplay.textContent = 'Erro! Por favor, selecione datas válidas e o tipo de suíte.';
             return;
         }
-
+        
         // 4. Cálculo da Diferença de Dias
-        const diffTime = Math.abs(checkoutDate - checkinDate);
+        const diffTime = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
         // 5. Cálculo do Valor Total
@@ -128,7 +128,6 @@ if (calculateBtn) {
         } else {
             totalDisplay.textContent = 'Erro no cálculo. O valor deve ser positivo.';
         }
-        totalDisplay.style.display = 'block';
     });
 }
 // --- Lógica do Formulário de Cadastro ---
@@ -231,3 +230,4 @@ if (loginForm) {
 // O bloco de lógica para a página 'actions.html' foi removido porque não é mais necessário,
 // já que a verificação de e-mail foi desativada e não haverá links de verificação enviados.
 // Você pode remover o conteúdo HTML de actions.html também.
+
