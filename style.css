@@ -572,7 +572,7 @@ footer {
 /* --- ESTILOS PARA O RESUMO DA RESERVA --- */
 
 .price-summary-box {
-    background-color: #ffffff; /* Fundo branco para contraste */
+    background-color: #242424; /* Fundo branco para contraste */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 25px;
@@ -581,10 +581,10 @@ footer {
 }
 
 .price-summary-box h2 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 20px;
     font-size: 1.5em;
-    border-bottom: 2px solid #f0f0f0; /* Linha sutil */
+    border-bottom: 2px solid #ffffff; /* Linha sutil */
     padding-bottom: 10px;
 }
 
