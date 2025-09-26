@@ -74,8 +74,15 @@ if (logoutButton) {
 // --- Lógica da Calculadora ---
 const calculateBtn = document.getElementById('calculate-btn');
 
+// Função de conversão para o formato YYYY-MM-DD (necessário para new Date)
+function convertDate(dateStr) {
+    if (!dateStr) return null;
+    const [day, month, year] = dateStr.split('/');
+    return `${year}-${month}-${day}`;
+}
+
 if (calculateBtn) {
-    // 1. Definição dos Preços Diários (Ajuste estes valores!)
+    // 1. Definição dos Preços Diários (MANTENHA ESTES VALORES)
     const PRICES = {
         standard: 150.00,
         deluxe: 300.00,
@@ -83,21 +90,27 @@ if (calculateBtn) {
     };
 
     calculateBtn.addEventListener('click', (event) => {
-        event.preventDefault(); // Evita que o formulário recarregue a página
+        event.preventDefault();
 
-        // 2. Leitura dos Inputs (Confirme se estes IDs estão corretos no seu HTML)
+        // 2. Leitura dos Inputs (VERIFIQUE OS IDS NO SEU HTML!)
         const checkinInput = document.getElementById('checkin-date');
         const checkoutInput = document.getElementById('checkout-date');
         const suiteSelect = document.getElementById('suite-type');
-        const totalDisplay = document.getElementById('reservation-total'); // ID do elemento onde o total será exibido
+        const totalDisplay = document.getElementById('reservation-total'); 
 
-        const checkinDate = new Date(checkinInput.value);
-        const checkoutDate = new Date(checkoutInput.value);
+        // Converte as datas antes de criar o objeto Date
+        const checkinDateStr = convertDate(checkinInput.value);
+        const checkoutDateStr = convertDate(checkoutInput.value);
+
+        const checkinDate = new Date(checkinDateStr);
+        const checkoutDate = new Date(checkoutDateStr);
         const suiteType = suiteSelect.value;
         
-        // 3. Validação Básica
-        if (!checkinDate || !checkoutDate || checkinDate >= checkoutDate || !suiteType) {
-            alert("Por favor, selecione datas válidas e o tipo de suíte.");
+        // 3. Validação Aprimorada
+        if (!checkinDateStr || !checkoutDateStr || isNaN(checkinDate) || isNaN(checkoutDate) || checkinDate >= checkoutDate || !suiteType) {
+            alert("Erro! Por favor, verifique se todas as datas e a suíte foram selecionadas corretamente.");
+            totalDisplay.textContent = 'Preencha todos os campos corretamente.';
+            totalDisplay.style.display = 'block';
             return;
         }
 
@@ -111,15 +124,13 @@ if (calculateBtn) {
 
         // 6. Exibição do Resultado
         if (totalValue > 0) {
-            totalDisplay.textContent = `Total: R$ ${totalValue.toFixed(2)}`;
-            totalDisplay.style.display = 'block';
+            totalDisplay.textContent = `Total: R$ ${totalValue.toFixed(2)} (${diffDays} diárias)`;
         } else {
-            totalDisplay.textContent = 'Erro no cálculo. Verifique as datas e o tipo de suíte.';
-            totalDisplay.style.display = 'block';
+            totalDisplay.textContent = 'Erro no cálculo. O valor deve ser positivo.';
         }
+        totalDisplay.style.display = 'block';
     });
 }
-
 // --- Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
