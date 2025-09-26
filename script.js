@@ -6,13 +6,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebas
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
-    // sendEmailVerification, (Removida)
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
     applyActionCode 
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+// ATUALIZAÇÃO: Adicionadas importações para Firestore Queries (concorrência)
+import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 // A sua configuração do Firebase
 const firebaseConfig = {
@@ -40,7 +40,6 @@ onAuthStateChanged(auth, (user) => {
     const navAccount = document.getElementById('nav-account');
     const navLogout = document.getElementById('nav-logout');
 
-    // Usuário logado aparece a conta, sem verificação de e-mail.
     if (user) { 
         navLogin.style.display = 'none';
         navAccount.style.display = 'list-item';
@@ -73,115 +72,182 @@ if (logoutButton) {
 const calculateBtn = document.getElementById('calculate-btn');
 
 if (calculateBtn) {
-    // 1. Definição dos Preços Diários (Ajuste estes valores se necessário!)
     const PRICES = {
         standard: 150.00,
         deluxe: 300.00,
         presidencial: 750.00
     };
+    const SUITE_NAMES = {
+        standard: 'Suíte Standard',
+        deluxe: 'Suíte Deluxe',
+        presidencial: 'Suíte Presidencial'
+    };
 
     calculateBtn.addEventListener('click', (event) => {
         event.preventDefault();
 
-        // 2. Leitura dos Inputs
         const checkinInput = document.getElementById('checkin-date');
         const checkoutInput = document.getElementById('checkout-date');
         const suiteSelect = document.getElementById('suite-type');
         
-        // Elementos de Exibição
         const resultsDetails = document.getElementById('results-details');
         const summaryDays = document.getElementById('summary-days');
         const summaryTotal = document.getElementById('summary-total');
+        const summarySuite = document.getElementById('summary-suite'); // NOVO ELEMENTO
         const totalMessage = document.getElementById('reservation-total-message');
 
         const checkinDate = new Date(checkinInput.value);
         const checkoutDate = new Date(checkoutInput.value);
         const suiteType = suiteSelect.value;
         
-        // 3. Validação
+        // Validação
         if (!checkinInput.value || !checkoutInput.value || checkinDate >= checkoutDate || !suiteType) {
             totalMessage.textContent = 'Erro! Por favor, selecione datas válidas e o tipo de suíte.';
             totalMessage.style.display = 'block';
-            if(resultsDetails) resultsDetails.style.display = 'none';
+            resultsDetails.style.display = 'none';
             return;
         }
         
-        // 4. Cálculo da Diferença de Dias
         const diffTime = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
-        // 5. Cálculo do Valor Total
         const pricePerNight = PRICES[suiteType] || 0;
         const totalValue = diffDays * pricePerNight;
 
-        // 6. Exibição do Resultado
+        // Exibição do Resultado
         if (totalValue > 0) {
             summaryDays.textContent = `${diffDays}`;
             summaryTotal.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
+            summarySuite.textContent = SUITE_NAMES[suiteType];
             
-            if(resultsDetails) resultsDetails.style.display = 'block';
-            if(totalMessage) totalMessage.style.display = 'none';
+            resultsDetails.style.display = 'block';
+            totalMessage.style.display = 'none';
         } else {
             totalMessage.textContent = 'Erro no cálculo. O valor deve ser positivo e as datas válidas.';
             totalMessage.style.display = 'block';
-            if(resultsDetails) resultsDetails.style.display = 'none';
+            resultsDetails.style.display = 'none';
         }
     });
 }
 
 
-// --- Lógica do Botão de Finalizar Reserva ---
+// --- Lógica de Transição: "Finalizar Reserva" -> "Formulário de Pagamento" ---
 const finalizeReservationBtn = document.getElementById('finalize-reservation-btn');
+const reservationSummaryView = document.getElementById('reservation-summary-view');
+const paymentFormView = document.getElementById('payment-form-view');
+const backToSummaryBtn = document.getElementById('back-to-summary-btn');
 
-if (finalizeReservationBtn) {
-    finalizeReservationBtn.addEventListener('click', async () => {
-        // 1. **COLETA DE DADOS:** Pega os valores
-        const checkinDate = document.getElementById('checkin-date').value;
-        const checkoutDate = document.getElementById('checkout-date').value;
-        const suiteType = document.getElementById('suite-type').value;
-
-        // Pega o valor total do HTML.
-        const summaryTotalElement = document.getElementById('summary-total');
-        const totalText = summaryTotalElement ? summaryTotalElement.textContent : 'R$ 0,00';
-        const totalValue = parseFloat(totalText.replace('R$', '').replace(',', '.'));
-        
-        // 2. **VERIFICAÇÃO DE PRÉ-REQUISITOS:**
-        if (totalValue === 0) {
-            alert('Por favor, calcule e valide o valor da reserva primeiro.');
-            return;
-        }
-
-        // 3. **VERIFICAÇÃO DE LOGIN:**
+if (finalizeReservationBtn && paymentFormView) {
+    
+    // Ação 1: Mostrar formulário de pagamento
+    finalizeReservationBtn.addEventListener('click', () => {
         const user = auth.currentUser;
         if (!user) {
-            alert('Você precisa estar logado para finalizar uma reserva. Redirecionando para o login...');
+            alert('Você precisa estar logado para finalizar uma reserva. Redirecionando...');
             window.location.href = 'login.html';
             return;
         }
 
-        // 4. **SALVAR NO FIREBASE:**
+        // Passa o valor total para o formulário de pagamento
+        const totalDisplay = document.getElementById('summary-total').textContent;
+        document.getElementById('payment-total-display').textContent = totalDisplay;
+
+        // Alterna as visualizações
+        reservationSummaryView.style.display = 'none';
+        paymentFormView.style.display = 'block';
+    });
+
+    // Ação 2: Voltar ao resumo
+    backToSummaryBtn.addEventListener('click', () => {
+        paymentFormView.style.display = 'none';
+        reservationSummaryView.style.display = 'block';
+    });
+}
+
+
+// --- Lógica de Confirmação Final: "Confirmar e Pagar" (com Concorrência) ---
+const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+const paymentMessage = document.getElementById('payment-message');
+
+if (confirmPaymentBtn) {
+    confirmPaymentBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        paymentMessage.style.display = 'none';
+        
+        // 1. Coleta de Dados
+        const checkinDateValue = document.getElementById('checkin-date').value;
+        const checkoutDateValue = document.getElementById('checkout-date').value;
+        const suiteType = document.getElementById('suite-type').value;
+        const paymentMethod = document.getElementById('payment-method').value;
+        const paymentName = document.getElementById('payment-name').value;
+        
+        const totalText = document.getElementById('summary-total').textContent;
+        const totalValue = parseFloat(totalText.replace('R$', '').replace(',', '.'));
+        const user = auth.currentUser;
+
+        if (!paymentMethod || !paymentName) {
+            paymentMessage.textContent = 'Por favor, preencha todos os campos de pagamento.';
+            paymentMessage.style.display = 'block';
+            return;
+        }
+        
         try {
+            // 2. VERIFICAÇÃO DE CONCORRÊNCIA (Double Booking)
+            const reservationsRef = collection(db, "reservations");
+            let q = query(reservationsRef, where("suiteType", "==", suiteType));
+            
+            const querySnapshot = await getDocs(q);
+            let isConflicting = false;
+            
+            const newCheckin = new Date(checkinDateValue);
+            const newCheckout = new Date(checkoutDateValue);
+
+            querySnapshot.forEach(docSnapshot => {
+                const existingReservation = docSnapshot.data();
+                const existingCheckin = new Date(existingReservation.checkIn);
+                const existingCheckout = new Date(existingReservation.checkOut);
+
+                // Lógica de Conflito: Ocorre quando [newCheckin < existingCheckout] E [newCheckout > existingCheckin]
+                if (newCheckin < existingCheckout && newCheckout > existingCheckin) {
+                    isConflicting = true;
+                }
+            });
+
+            if (isConflicting) {
+                alert('As datas selecionadas já estão reservadas para esta suíte. Escolha outro período.');
+                // Volta para a visualização de resumo para que o usuário mude as datas
+                paymentFormView.style.display = 'none';
+                reservationSummaryView.style.display = 'block';
+                return;
+            }
+
+            // 3. SALVAR NO FIREBASE
             const reservationId = user.uid + '_' + new Date().getTime(); 
             
             await setDoc(doc(db, "reservations", reservationId), {
                 userId: user.uid,
                 email: user.email,
                 suiteType: suiteType,
-                checkIn: checkinDate,
-                checkOut: checkoutDate,
+                checkIn: checkinDateValue,
+                checkOut: checkoutDateValue,
                 totalValue: totalValue,
-                status: 'Pendente' // Status inicial
+                paymentMethod: paymentMethod, // NOVO CAMPO
+                paymentName: paymentName,     // NOVO CAMPO
+                status: 'Confirmada'
             });
 
-            alert('Reserva finalizada com sucesso! Você será redirecionado para a página inicial.');
+            // 4. Feedback Final
+            alert('Parabéns! Sua reserva foi concluída e confirmada com sucesso! Você será redirecionado para a página inicial.');
             window.location.href = 'index.html'; 
 
         } catch (error) {
             console.error("Erro ao salvar a reserva:", error);
-            alert('Não foi possível finalizar a reserva. Verifique sua conexão e tente novamente.');
+            paymentMessage.textContent = 'Erro inesperado. Tente novamente.';
+            paymentMessage.style.display = 'block';
         }
     });
 }
+
 
 // --- Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
@@ -189,11 +255,8 @@ if (registerForm) {
     const registerMessage = document.getElementById('register-message');
     const birthdateInput = document.getElementById('register-birthdate');
     
-    // Adicione esta linha de volta se você usa o flatpickr na página de registro
-    if (birthdateInput) {
-        //flatpickr(birthdateInput, { "locale": "pt", dateFormat: "d/m/Y" });
-    }
-
+    // Removi a linha do flatpickr para evitar erros se o plugin não estiver incluído.
+    
     registerForm.addEventListener('submit', async (event) => { 
         event.preventDefault();
         registerMessage.style.display = 'none';
@@ -206,13 +269,14 @@ if (registerForm) {
         const password = document.getElementById('register-password').value;
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+            await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser; // Pega o usuário recém-criado
+            
             await setDoc(doc(db, "users", user.uid), {
                 nome: name, email: email, cpf: cpf, telefone: phone, dataNascimento: birthdate
             });
             
-            // Verificação de e-mail removida.
+            // Verificação de e-mail desativada (conforme pedido)
             
             registerMessage.textContent = 'Cadastro realizado com sucesso! Você já pode fazer login e usar o site.';
             registerMessage.className = 'message-box success';
@@ -266,8 +330,6 @@ if (loginForm) {
         }
     });
 }
-
-
 // =================================================================
 // 4. LÓGICA DA PÁGINA DE AÇÕES (actions.html) - REMOVIDA
 // =================================================================
