@@ -147,6 +147,56 @@ if (calculateBtn) {
         }
     });
 }
+// --- Lógica do Botão de Finalizar Reserva ---
+
+const finalizeReservationBtn = document.getElementById('finalize-reservation-btn');
+const reservationForm = document.getElementById('reservation-form'); // O formulário inteiro
+
+if (finalizeReservationBtn && reservationForm) {
+    finalizeReservationBtn.addEventListener('click', async () => {
+        // 1. **COLETA DE DADOS:** Pega os valores que já foram validados no cálculo.
+        const checkinDate = document.getElementById('checkin-date').value;
+        const checkoutDate = document.getElementById('checkout-date').value;
+        const suiteType = document.getElementById('suite-type').value;
+
+        // Assumindo que você já tem o valor total calculado e visível,
+        // mas é mais seguro recalcular ou pegar o valor do HTML
+        const totalText = document.getElementById('summary-total').textContent;
+        const totalValue = parseFloat(totalText.replace('R$', '').replace(',', '.'));
+        
+        // 2. **VERIFICAÇÃO DE LOGIN:** O usuário deve estar logado
+        const user = auth.currentUser;
+        if (!user) {
+            alert('Você precisa estar logado para finalizar uma reserva. Redirecionando para o login...');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // 3. **SALVAR NO FIREBASE:**
+        try {
+            // Cria um ID único para a reserva (usa a data atual como parte)
+            const reservationId = user.uid + '_' + new Date().getTime(); 
+            
+            await setDoc(doc(db, "reservations", reservationId), {
+                userId: user.uid,
+                email: user.email,
+                suiteType: suiteType,
+                checkIn: checkinDate,
+                checkOut: checkoutDate,
+                totalValue: totalValue,
+                status: 'Pendente' // Você pode definir o status inicial
+            });
+
+            alert('Reserva finalizada com sucesso! Verifique seu e-mail para confirmação.');
+            // Redireciona para a página inicial ou de confirmação
+            window.location.href = 'index.html'; 
+
+        } catch (error) {
+            console.error("Erro ao salvar a reserva:", error);
+            alert('Não foi possível finalizar a reserva. Tente novamente.');
+        }
+    });
+}
 // --- Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
@@ -247,4 +297,5 @@ if (loginForm) {
 // O bloco de lógica para a página 'actions.html' foi removido porque não é mais necessário,
 // já que a verificação de e-mail foi desativada e não haverá links de verificação enviados.
 // Você pode remover o conteúdo HTML de actions.html também.
+
 
