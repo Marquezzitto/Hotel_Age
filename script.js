@@ -122,11 +122,28 @@ if (calculateBtn) {
         const pricePerNight = PRICES[suiteType] || 0;
         const totalValue = diffDays * pricePerNight;
 
-        // 6. Exibição do Resultado
+        // Dentro do calculateBtn.addEventListener('click', ...)
+
+        // ... (todas as validações e cálculos)
+
+        // 6. Exibição do Resultado (NOVA LÓGICA)
+        const resultsDetails = document.getElementById('results-details');
+        const summaryDays = document.getElementById('summary-days');
+        const summaryTotal = document.getElementById('summary-total');
+        const totalMessage = document.getElementById('reservation-total-message');
+
         if (totalValue > 0) {
-            totalDisplay.textContent = `Total: R$ ${totalValue.toFixed(2)} (${diffDays} diárias)`;
+            // 6.1 Sucesso: Atualiza os detalhes
+            summaryDays.textContent = `${diffDays}`;
+            summaryTotal.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`; // Formato BR
+            
+            resultsDetails.style.display = 'block'; // Mostra o bloco de detalhes
+            totalMessage.style.display = 'none';    // Esconde a mensagem inicial
         } else {
-            totalDisplay.textContent = 'Erro no cálculo. O valor deve ser positivo.';
+            // 6.2 Erro: Volta a exibir a mensagem de erro
+            totalMessage.textContent = 'Erro no cálculo. O valor deve ser positivo e as datas válidas.';
+            totalMessage.style.display = 'block';
+            resultsDetails.style.display = 'none';
         }
     });
 }
