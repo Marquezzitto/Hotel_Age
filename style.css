@@ -1,18 +1,18 @@
-/* --- GERAL, FONTES E TEMA AZUL E BRANCO --- */
+/* --- GERAL, FONTES E TEMA CLARO --- */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --cor-principal: #ffffff;
-    --cor-acento: #1e88e5;
-    --cor-acento-rgb: 30, 136, 229;
-    --cor-texto-principal: #1a1a1a;
-    --cor-texto-secundario: #555555;
-    --cor-texto-secundario-rgb: 85, 85, 85;
-    --cor-fundo-secao: #f5f9ff;
-    --cor-borda-input: #d0d0d0;
-    --cor-fundo-input: #ffffff;
-    --cor-sucesso: #4CAF50;
-    --cor-erro: #f44336;
+    --cor-principal: #ffffff; /* alterado de #1a1a1a para branco */
+    --cor-acento: #007BFF; /* alterado de #ffc107 para azul */
+    --cor-acento-rgb: 0, 123, 255; /* azul RGB */
+    --cor-texto-principal: #1a1a1a; /* trocado para um texto principal escuro no fundo claro */
+    --cor-texto-secundario: #505050; /* tom cinza escuro para texto secundário */
+    --cor-texto-secundario-rgb: 80, 80, 80;
+    --cor-fundo-secao: #f5f9ff; /* fundo claro para seções */
+    --cor-borda-input: #ccc; /* borda clara para input */
+    --cor-fundo-input: #fff; /* fundo branco para inputs */
+    --cor-sucesso: #4CAF50; /* verde para sucesso permanece */
+    --cor-erro: #f44336; /* vermelho para erro permanece */
 }
 
 * {
@@ -34,7 +34,7 @@ body {
 
 /* --- CABEÇALHO E NAVEGAÇÃO --- */
 header {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.8); /* header claro com transparência */
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     position: fixed;
@@ -42,7 +42,6 @@ header {
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 nav {
@@ -120,7 +119,7 @@ nav ul li a:hover::after {
 .carousel-container {
     position: relative;
     text-align: center;
-    color: white;
+    color: var(--cor-texto-principal);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -157,7 +156,7 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(30, 136, 229, 0.7) 0%, rgba(30, 136, 229, 0.2) 60%, rgba(30, 136, 229, 0.7) 100%);
+    background: linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.8) 100%);
     z-index: 1;
 }
 
@@ -178,8 +177,8 @@ nav ul li a:hover::after {
     font-family: 'Playfair Display', serif;
     font-size: 4.5rem;
     line-height: 1.2;
-    color: #fff;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+    color: var(--cor-texto-principal);
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.2);
     margin-bottom: 1.5rem;
 }
 
@@ -187,12 +186,12 @@ nav ul li a:hover::after {
     font-size: 1.2rem;
     font-weight: 300;
     margin-bottom: 2.5rem;
-    color: #fff;
+    color: var(--cor-texto-principal);
 }
 
 .cta-button {
-    background-color: var(--cor-acento);
-    color: #ffffff;
+    background-color: transparent;
+    color: var(--cor-acento);
     border: 2px solid var(--cor-acento);
     padding: 16px 32px;
     text-decoration: none;
@@ -212,7 +211,6 @@ nav ul li a:hover::after {
     max-width: 320px;
     padding: 1rem;
     margin-top: 1rem;
-    cursor: pointer;
 }
 
 /* Corrige o alinhamento dos botões na tela de reserva */
@@ -225,10 +223,10 @@ nav ul li a:hover::after {
 }
 
 .cta-button:hover {
-    background-color: #1565c0;
-    border-color: #1565c0;
+    background-color: var(--cor-acento);
+    color: var(--cor-principal);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.4);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 /* --- SEÇÕES DE CONTEÚDO --- */
@@ -275,19 +273,18 @@ nav ul li a:hover::after {
 }
 
 .suite-card {
-    background-color: #ffffff;
+    background-color: var(--cor-fundo-secao);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e0e0e0;
 }
 
 .suite-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(30, 136, 229, 0.3);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 .suite-card img {
@@ -410,12 +407,10 @@ nav ul li a:hover::after {
 }
 
 .booking-box {
-    background-color: #ffffff;
+    background-color: var(--cor-fundo-secao);
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .booking-box .price {
@@ -452,21 +447,19 @@ nav ul li a:hover::after {
     max-width: 650px;
     margin: 4rem auto;
     padding: 3rem;
-    background-color: #ffffff;
+    background-color: var(--cor-fundo-secao);
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .form-container {
-    background-color: #ffffff;
+    background-color: var(--cor-fundo-secao);
     padding: 3rem;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
-    border: 1px solid #e0e0e0;
 }
 
 .form-container h2 {
@@ -507,7 +500,7 @@ nav ul li a:hover::after {
 .form-group input:focus,
 .form-group select:focus {
     border-color: var(--cor-acento);
-    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.2);
+    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.3);
     outline: none;
 }
 
@@ -541,57 +534,4 @@ nav ul li a:hover::after {
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
-}
-
-.message-box.success {
-    background-color: #e8f5e9;
-    border: 1px solid var(--cor-sucesso);
-    color: #2e7d32;
-}
-
-.message-box.error {
-    background-color: #ffebee;
-    border: 1px solid var(--cor-erro);
-    color: #c62828;
-}
-
-
-/* --- RODAPÉ --- */
-footer {
-    background-color: var(--cor-fundo-secao);
-    color: var(--cor-texto-secundario);
-    text-align: center;
-    padding: 3rem 5%;
-    font-size: 0.9rem;
-    border-top: 1px solid #e0e0e0;
-}
-
-/* --- ESTILOS ADICIONAIS NECESSÁRIOS PARA NOVOS ELEMENTOS --- */
-.secondary-button {
-    background-color: transparent;
-    color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-texto-secundario);
-    padding: 12px 20px;
-    border-radius: 50px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 10px;
-    width: 100%;
-    display: block;
-}
-
-.secondary-button:hover {
-    color: var(--cor-acento);
-    border-color: var(--cor-acento);
-}
-
-.final-price-note {
-    font-size: 1.1em;
-    padding: 10px 0;
-    text-align: center;
-    border: 1px dashed var(--cor-borda-input);
-    border-radius: 4px;
-    margin: 20px 0;
-    background-color: var(--cor-fundo-secao);
 }
