@@ -1,18 +1,18 @@
-/* --- GERAL, FONTES E TEMA CLARO --- */
+/* --- GERAL, FONTES E TEMA CLARO (AZUL E BRANCO) --- */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --cor-principal: #ffffff; /* alterado de #1a1a1a para branco */
-    --cor-acento: #007BFF; /* alterado de #ffc107 para azul */
-    --cor-acento-rgb: 0, 123, 255; /* azul RGB */
-    --cor-texto-principal: #1a1a1a; /* trocado para um texto principal escuro no fundo claro */
-    --cor-texto-secundario: #505050; /* tom cinza escuro para texto secundário */
-    --cor-texto-secundario-rgb: 80, 80, 80;
-    --cor-fundo-secao: #f5f9ff; /* fundo claro para seções */
-    --cor-borda-input: #ccc; /* borda clara para input */
-    --cor-fundo-input: #fff; /* fundo branco para inputs */
-    --cor-sucesso: #4CAF50; /* verde para sucesso permanece */
-    --cor-erro: #f44336; /* vermelho para erro permanece */
+    --cor-principal: #ffffff;               /* Fundo principal branco */
+    --cor-acento: #007bff;                  /* Azul principal */
+    --cor-acento-rgb: 0, 123, 255;          /* RGB do azul */
+    --cor-texto-principal: #1a1a1a;         /* Texto preto */
+    --cor-texto-secundario: #555555;       /* Cinza para textos secundários */
+    --cor-texto-secundario-rgb: 85, 85, 85;
+    --cor-fundo-secao: #f5f7fa;            /* Fundo suave azul-cinza */
+    --cor-borda-input: #cccccc;            /* Borda clara */
+    --cor-fundo-input: #ffffff;           /* Fundo de input branco */
+    --cor-sucesso: #28a745;               /* Verde para sucesso */
+    --cor-erro: #dc3545;                  /* Vermelho para erros */
 }
 
 * {
@@ -34,7 +34,7 @@ body {
 
 /* --- CABEÇALHO E NAVEGAÇÃO --- */
 header {
-    background-color: rgba(255, 255, 255, 0.8); /* header claro com transparência */
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     position: fixed;
@@ -42,6 +42,7 @@ header {
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 nav {
@@ -119,34 +120,12 @@ nav ul li a:hover::after {
 .carousel-container {
     position: relative;
     text-align: center;
-    color: var(--cor-texto-principal);
+    color: white;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
-    animation: zoom-in-out 20s infinite alternate;
-}
-
-@keyframes zoom-in-out {
-    from { transform: scale(1.05); }
-    to { transform: scale(1.15); }
 }
 
 .carousel-container::before {
@@ -156,37 +135,8 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.8) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.5) 100%);
     z-index: 1;
-}
-
-.carousel-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    padding: 2rem;
-    animation: fade-in-up 1.2s ease-out;
-}
-
-@keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.carousel-content h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    line-height: 1.2;
-    color: var(--cor-texto-principal);
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.2);
-    margin-bottom: 1.5rem;
-}
-
-.carousel-content p {
-    font-size: 1.2rem;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-    color: var(--cor-texto-principal);
 }
 
 .cta-button {
@@ -201,32 +151,16 @@ nav ul li a:hover::after {
     transition: all 0.4s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-/* Centraliza todos os botões que precisam de centralização */
-.cta-button {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 320px;
-    padding: 1rem;
-    margin-top: 1rem;
-}
-
-/* Corrige o alinhamento dos botões na tela de reserva */
-#finalize-reservation-btn,
-#confirm-payment-btn {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1rem auto 0;
     max-width: 320px;
 }
 
 .cta-button:hover {
     background-color: var(--cor-acento);
-    color: var(--cor-principal);
+    color: #fff;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 /* --- SEÇÕES DE CONTEÚDO --- */
@@ -243,295 +177,12 @@ nav ul li a:hover::after {
     margin-bottom: 1rem;
 }
 
-.page-title {
-    padding: 8rem 0 4rem;
+/* --- RODAPÉ --- */
+footer {
+    background-color: #f0f0f0;
+    color: var(--cor-texto-secundario);
     text-align: center;
-}
-
-.page-title h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: var(--cor-acento);
-    margin-bottom: 1rem;
-}
-
-.page-title p {
-    font-size: 1.1rem;
-    color: var(--cor-texto-secundario);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* --- CARDS DE SUÍTES --- */
-.suites-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 4rem 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.suite-card {
-    background-color: var(--cor-fundo-secao);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.suite-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-.suite-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.suite-card-content {
-    padding: 2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.suite-card-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--cor-acento);
-    margin-bottom: 1rem;
-}
-
-.suite-card-content p {
-    color: var(--cor-texto-secundario);
-    margin-bottom: 2rem;
-    flex-grow: 1;
-}
-
-.suite-card-content .cta-button {
-    align-self: flex-start;
-    padding: 12px 28px;
-    font-size: 1rem;
-}
-
-/* --- PÁGINA DE DETALHES DA SUÍTE --- */
-.suite-details-container {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 8rem 5% 4rem;
-}
-
-.gallery .main-image {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
-
-.gallery .thumbnail-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.gallery .thumbnail-images img {
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
-.gallery .thumbnail-images img:hover {
-    opacity: 0.8;
-}
-
-.suite-info h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: var(--cor-acento);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-.suite-info .suite-description {
-    font-size: 1rem;
-    color: var(--cor-texto-secundario);
-    margin-bottom: 2rem;
-}
-
-.key-features {
-    display: flex;
-    gap: 2rem;
-    background-color: var(--cor-fundo-secao);
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 2rem;
+    padding: 3rem 5%;
     font-size: 0.9rem;
-}
-
-.suite-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--cor-texto-principal);
-    margin-bottom: 1rem;
-    border-left: 3px solid var(--cor-acento);
-    padding-left: 1rem;
-}
-
-.amenities-list {
-    list-style: none;
-    margin-bottom: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-}
-
-.amenities-list li {
-    color: var(--cor-texto-secundario);
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.amenities-list li::before {
-    content: '✔';
-    color: var(--cor-acento);
-    position: absolute;
-    left: 0;
-}
-
-.booking-box {
-    background-color: var(--cor-fundo-secao);
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.booking-box .price {
-    margin-bottom: 1.5rem;
-}
-
-.booking-box .price span {
-    font-size: 1rem;
-    color: var(--cor-texto-secundario);
-}
-
-.booking-box .price strong {
-    display: block;
-    font-size: 2.5rem;
-    color: var(--cor-acento);
-}
-
-.booking-box .cta-button {
-    width: 100%;
-    padding: 16px;
-}
-
-/* --- FORMULÁRIOS E PÁGINAS DE LOGIN/REGISTRO --- */
-.auth-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.auth-container-single {
-    padding: 0 5% 4rem;
-}
-
-.booking-form-container {
-    max-width: 650px;
-    margin: 4rem auto;
-    padding: 3rem;
-    background-color: var(--cor-fundo-secao);
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.form-container {
-    background-color: var(--cor-fundo-secao);
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-}
-
-.form-container h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--cor-acento);
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--cor-borda-input);
-    padding-bottom: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    margin-bottom: 0.5rem;
-    color: var(--cor-texto-secundario);
-    font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group select {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--cor-borda-input);
-    border-radius: 8px;
-    background-color: var(--cor-fundo-input);
-    color: var(--cor-texto-principal);
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: var(--cor-acento);
-    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.3);
-    outline: none;
-}
-
-.form-switch-link {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: var(--cor-texto-secundario);
-}
-
-.form-switch-link a {
-    color: var(--cor-acento);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.form-container .cta-button,
-#reservation-form .cta-button {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 320px;
-    padding: 1rem;
-    margin-top: 1rem;
-}
-
-.message-box {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
+    border-top: 1px solid #ddd;
 }
