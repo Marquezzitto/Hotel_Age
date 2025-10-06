@@ -1,6 +1,5 @@
-// =================================================================
-// 1. IMPORTAÇÕES E CONFIGURAÇÃO INICIAL DO FIREBASE
-// =================================================================
+
+//IMPORTAÇÕES E CONFIGURAÇÃO INICIAL DO FIREBASE
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { 
@@ -11,10 +10,10 @@ import {
     signOut,
     applyActionCode 
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-// ATUALIZAÇÃO: Adicionadas importações para Firestore Queries (concorrência)
+
 import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-// A sua configuração do Firebase
+//Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBfnfohsW-9BkxdHmZMgdN9IT_-l3wAnvs",
     authDomain: "hotel-age.firebaseapp.com",
@@ -24,17 +23,17 @@ const firebaseConfig = {
     appId: "1:914153302571:web:c4bdde17f2254f04fc986e"
 };
 
-// Inicializa os serviços do Firebase
+// Serviços do Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// =================================================================
-// 2. LÓGICA GLOBAL (Roda em todas as páginas)
-// =================================================================
 
-// Observador que atualiza o menu se o usuário está logado ou não
+//LÓGICA GLOBAL (Roda em todas as páginas)
+
+
+//Atualiza o menu se o usuário está logado ou não
 onAuthStateChanged(auth, (user) => {
     const navLogin = document.getElementById('nav-login');
     const navAccount = document.getElementById('nav-account');
@@ -51,7 +50,7 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Funcionalidade do botão de Sair (Logout)
+//Botão de Sair (Logout)
 const logoutButton = document.getElementById('logout-button');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -64,11 +63,11 @@ if (logoutButton) {
 }
 
 
-// =================================================================
-// 3. LÓGICAS DE PÁGINAS ESPECÍFICAS
-// =================================================================
 
-// --- Lógica da Calculadora ---
+//LÓGICAS DE PÁGINAS ESPECÍFICAS
+
+
+//Lógica da Calculadora ---
 const calculateBtn = document.getElementById('calculate-btn');
 
 if (calculateBtn) {
@@ -100,7 +99,7 @@ if (calculateBtn) {
         const checkoutDate = new Date(checkoutInput.value);
         const suiteType = suiteSelect.value;
         
-        // Validação
+        // Validação DATAS
         if (!checkinInput.value || !checkoutInput.value || checkinDate >= checkoutDate || !suiteType) {
             totalMessage.textContent = 'Erro! Por favor, selecione datas válidas e o tipo de suíte.';
             totalMessage.style.display = 'block';
@@ -131,7 +130,7 @@ if (calculateBtn) {
 }
 
 
-// --- Lógica de Transição: "Finalizar Reserva" -> "Formulário de Pagamento" ---
+//Lógica de Transição: "Finalizar Reserva" -> "Formulário de Pagamento" ---
 const finalizeReservationBtn = document.getElementById('finalize-reservation-btn');
 const reservationSummaryView = document.getElementById('reservation-summary-view');
 const paymentFormView = document.getElementById('payment-form-view');
@@ -139,7 +138,7 @@ const backToSummaryBtn = document.getElementById('back-to-summary-btn');
 
 if (finalizeReservationBtn && paymentFormView) {
     
-    // Ação 1: Mostrar formulário de pagamento
+    //Mostrar formulário de pagamento
     finalizeReservationBtn.addEventListener('click', () => {
         const user = auth.currentUser;
         if (!user) {
@@ -157,7 +156,7 @@ if (finalizeReservationBtn && paymentFormView) {
         paymentFormView.style.display = 'block';
     });
 
-    // Ação 2: Voltar ao resumo
+    //Voltar ao resumo
     backToSummaryBtn.addEventListener('click', () => {
         paymentFormView.style.display = 'none';
         reservationSummaryView.style.display = 'block';
@@ -165,7 +164,7 @@ if (finalizeReservationBtn && paymentFormView) {
 }
 
 
-// --- Lógica de Confirmação Final: "Confirmar e Pagar" (com Concorrência) ---
+//Lógica de Confirmação Final: "Confirmar e Pagar" (com Concorrência) ---
 const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
 const paymentMessage = document.getElementById('payment-message');
 
@@ -174,7 +173,7 @@ if (confirmPaymentBtn) {
         event.preventDefault();
         paymentMessage.style.display = 'none';
         
-        // 1. Coleta de Dados
+        //Coleta de Dados
         const checkinDateValue = document.getElementById('checkin-date').value;
         const checkoutDateValue = document.getElementById('checkout-date').value;
         const suiteType = document.getElementById('suite-type').value;
@@ -192,7 +191,7 @@ if (confirmPaymentBtn) {
         }
         
         try {
-            // 2. VERIFICAÇÃO DE CONCORRÊNCIA (Double Booking)
+            //VERIFICAÇÃO DE CONCORRÊNCIA (Double Booking)
             const reservationsRef = collection(db, "reservations");
             let q = query(reservationsRef, where("suiteType", "==", suiteType));
             
@@ -221,7 +220,7 @@ if (confirmPaymentBtn) {
                 return;
             }
 
-            // 3. SALVAR NO FIREBASE
+            //SALVAR NO FIREBASE
             const reservationId = user.uid + '_' + new Date().getTime(); 
             
             await setDoc(doc(db, "reservations", reservationId), {
@@ -236,7 +235,7 @@ if (confirmPaymentBtn) {
                 status: 'Confirmada'
             });
 
-            // 4. Feedback Final
+            //Feedback Final
             alert('Parabéns! Sua reserva foi concluída e confirmada com sucesso! Você será redirecionado para a página inicial.');
             window.location.href = 'index.html'; 
 
@@ -249,13 +248,13 @@ if (confirmPaymentBtn) {
 }
 
 
-// --- Lógica do Formulário de Cadastro ---
+//Lógica do Formulário de Cadastro ---
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
     const registerMessage = document.getElementById('register-message');
     const birthdateInput = document.getElementById('register-birthdate');
     
-    // Removi a linha do flatpickr para evitar erros se o plugin não estiver incluído.
+    //Removi a linha do flatpickr para evitar erros se o plugin não estiver incluído.
     
     registerForm.addEventListener('submit', async (event) => { 
         event.preventDefault();
@@ -276,27 +275,27 @@ if (registerForm) {
                 nome: name, email: email, cpf: cpf, telefone: phone, dataNascimento: birthdate
             });
             
-            // Verificação de e-mail desativada (conforme pedido)
+//             // Verificação de e-mail desativada
             
-            registerMessage.textContent = 'Cadastro realizado com sucesso! Você já pode fazer login e usar o site.';
-            registerMessage.className = 'message-box success';
-            registerMessage.style.display = 'block';
-            registerForm.reset();
-        } catch (error) {
-            let friendlyMessage = 'Ocorreu um erro.';
-            if (error.code === 'auth/email-already-in-use') {
-                friendlyMessage = 'Este e-mail já está cadastrado.';
-            } else if (error.code === 'auth/weak-password') {
-                friendlyMessage = 'A senha precisa ter pelo menos 6 caracteres.';
-            }
-            registerMessage.textContent = friendlyMessage;
-            registerMessage.className = 'message-box error';
-            registerMessage.style.display = 'block';
-        }
-    });
-}
+//             registerMessage.textContent = 'Cadastro realizado com sucesso! Você já pode fazer login e usar o site.';
+//             registerMessage.className = 'message-box success';
+//             registerMessage.style.display = 'block';
+//             registerForm.reset();
+//         } catch (error) {
+//             let friendlyMessage = 'Ocorreu um erro.';
+//             if (error.code === 'auth/email-already-in-use') {
+//                 friendlyMessage = 'Este e-mail já está cadastrado.';
+//             } else if (error.code === 'auth/weak-password') {
+//                 friendlyMessage = 'A senha precisa ter pelo menos 6 caracteres.';
+//             }
+//             registerMessage.textContent = friendlyMessage;
+//             registerMessage.className = 'message-box error';
+//             registerMessage.style.display = 'block';
+//         }
+//     });
+// }
 
-// --- Lógica do Formulário de Login ---
+//Lógica do Formulário de Login ---
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
     const loginMessage = document.getElementById('login-message');
@@ -333,3 +332,4 @@ if (loginForm) {
 // =================================================================
 // 4. LÓGICA DA PÁGINA DE AÇÕES (actions.html) - REMOVIDA
 // =================================================================
+
