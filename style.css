@@ -1,16 +1,16 @@
-/* --- GERAL, FONTES E TEMA ESCURO --- */
+/* --- GERAL, FONTES E TEMA AZUL E BRANCO --- */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --cor-principal: #1a1a1a;
-    --cor-acento: #ffc107;
-    --cor-acento-rgb: 255, 193, 7;
-    --cor-texto-principal: #f0f0f0;
-    --cor-texto-secundario: #a0a0a0;
-    --cor-texto-secundario-rgb: 160, 160, 160;
-    --cor-fundo-secao: #242424;
-    --cor-borda-input: #333;
-    --cor-fundo-input: #222;
+    --cor-principal: #ffffff;
+    --cor-acento: #1e88e5;
+    --cor-acento-rgb: 30, 136, 229;
+    --cor-texto-principal: #1a1a1a;
+    --cor-texto-secundario: #555555;
+    --cor-texto-secundario-rgb: 85, 85, 85;
+    --cor-fundo-secao: #f5f9ff;
+    --cor-borda-input: #d0d0d0;
+    --cor-fundo-input: #ffffff;
     --cor-sucesso: #4CAF50;
     --cor-erro: #f44336;
 }
@@ -34,7 +34,7 @@ body {
 
 /* --- CABEÇALHO E NAVEGAÇÃO --- */
 header {
-    background-color: rgba(26, 26, 26, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     position: fixed;
@@ -42,6 +42,7 @@ header {
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 nav {
@@ -156,7 +157,7 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(to top, rgba(30, 136, 229, 0.7) 0%, rgba(30, 136, 229, 0.2) 60%, rgba(30, 136, 229, 0.7) 100%);
     z-index: 1;
 }
 
@@ -178,7 +179,7 @@ nav ul li a:hover::after {
     font-size: 4.5rem;
     line-height: 1.2;
     color: #fff;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
     margin-bottom: 1.5rem;
 }
 
@@ -186,12 +187,12 @@ nav ul li a:hover::after {
     font-size: 1.2rem;
     font-weight: 300;
     margin-bottom: 2.5rem;
-    color: var(--cor-texto-principal);
+    color: #fff;
 }
 
 .cta-button {
-    background-color: transparent;
-    color: var(--cor-acento);
+    background-color: var(--cor-acento);
+    color: #ffffff;
     border: 2px solid var(--cor-acento);
     padding: 16px 32px;
     text-decoration: none;
@@ -211,7 +212,7 @@ nav ul li a:hover::after {
     max-width: 320px;
     padding: 1rem;
     margin-top: 1rem;
-    /* Mantenha as outras regras de estilo do seu cta-button aqui */
+    cursor: pointer;
 }
 
 /* Corrige o alinhamento dos botões na tela de reserva */
@@ -224,10 +225,10 @@ nav ul li a:hover::after {
 }
 
 .cta-button:hover {
-    background-color: var(--cor-acento);
-    color: var(--cor-principal);
+    background-color: #1565c0;
+    border-color: #1565c0;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.4);
 }
 
 /* --- SEÇÕES DE CONTEÚDO --- */
@@ -274,18 +275,19 @@ nav ul li a:hover::after {
 }
 
 .suite-card {
-    background-color: var(--cor-fundo-secao);
+    background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
 }
 
 .suite-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 25px rgba(30, 136, 229, 0.3);
 }
 
 .suite-card img {
@@ -408,10 +410,12 @@ nav ul li a:hover::after {
 }
 
 .booking-box {
-    background-color: var(--cor-fundo-secao);
+    background-color: #ffffff;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .booking-box .price {
@@ -448,19 +452,21 @@ nav ul li a:hover::after {
     max-width: 650px;
     margin: 4rem auto;
     padding: 3rem;
-    background-color: var(--cor-fundo-secao);
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
 }
 
 .form-container {
-    background-color: var(--cor-fundo-secao);
+    background-color: #ffffff;
     padding: 3rem;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
+    border: 1px solid #e0e0e0;
 }
 
 .form-container h2 {
@@ -501,7 +507,7 @@ nav ul li a:hover::after {
 .form-group input:focus,
 .form-group select:focus {
     border-color: var(--cor-acento);
-    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.3);
+    box-shadow: 0 0 0 3px rgba(var(--cor-acento-rgb), 0.2);
     outline: none;
 }
 
@@ -538,26 +544,26 @@ nav ul li a:hover::after {
 }
 
 .message-box.success {
-    background-color: #2f4e3c;
+    background-color: #e8f5e9;
     border: 1px solid var(--cor-sucesso);
-    color: #c8e6c9;
+    color: #2e7d32;
 }
 
 .message-box.error {
-    background-color: #5c2f2f;
+    background-color: #ffebee;
     border: 1px solid var(--cor-erro);
-    color: #ffcdd2;
+    color: #c62828;
 }
 
 
 /* --- RODAPÉ --- */
 footer {
-    background-color: var(--cor-principal);
+    background-color: var(--cor-fundo-secao);
     color: var(--cor-texto-secundario);
     text-align: center;
     padding: 3rem 5%;
     font-size: 0.9rem;
-    border-top: 1px solid var(--cor-fundo-secao);
+    border-top: 1px solid #e0e0e0;
 }
 
 /* --- ESTILOS ADICIONAIS NECESSÁRIOS PARA NOVOS ELEMENTOS --- */
@@ -576,8 +582,8 @@ footer {
 }
 
 .secondary-button:hover {
-    color: var(--cor-texto-principal);
-    border-color: var(--cor-texto-principal);
+    color: var(--cor-acento);
+    border-color: var(--cor-acento);
 }
 
 .final-price-note {
@@ -587,5 +593,5 @@ footer {
     border: 1px dashed var(--cor-borda-input);
     border-radius: 4px;
     margin: 20px 0;
-    background-color: var(--cor-fundo-input);
+    background-color: var(--cor-fundo-secao);
 }
