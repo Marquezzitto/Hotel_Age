@@ -315,6 +315,8 @@ form {
     background-color: var(--light-gray);
     padding: 2rem;
     border-radius: var(--border-radius);
+    max-width: 800px;
+    margin: 2rem auto;
 }
 
 fieldset {
@@ -353,6 +355,7 @@ textarea {
     border-radius: var(--border-radius);
     font-size: 1rem;
     transition: var(--transition);
+    font-family: inherit;
 }
 
 input:focus,
@@ -361,6 +364,11 @@ textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 button {
@@ -388,6 +396,70 @@ button[type="reset"] {
 
 button[type="reset"]:hover {
     background-color: #5a6268;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Estilos específicos para formulário de contato */
+#header-contato {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+}
+
+#header-contato h2 {
+    color: var(--white);
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+#info-contato {
+    background-color: var(--light-gray);
+}
+
+#info-contato dl {
+    display: grid;
+    gap: 1.5rem;
+}
+
+#info-contato dt {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+#info-contato dd {
+    margin-left: 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--secondary-color);
+}
+
+#info-contato a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+#info-contato a:hover {
+    color: var(--dark-blue);
+    text-decoration: underline;
+}
+
+#formulario-contato {
+    background-color: var(--white);
+}
+
+#formulario-contato form > div:last-child {
+    text-align: center;
+    margin-top: 2rem;
 }
 
 /* ===================================
@@ -532,6 +604,31 @@ iframe {
     border: none;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 2rem 0;
+}
+
+/* Estilos específicos para página de localização */
+body > h1 {
+    color: var(--primary-color);
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+body > iframe {
+    display: block;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+body > p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 2rem;
 }
 
 /* ===================================
