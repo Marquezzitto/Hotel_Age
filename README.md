@@ -20,9 +20,14 @@ Utilizar recursos multimídia de forma otimizada
 
 👥 Equipe
 
-[Nome do Membro 1] - Matrícula: XXXXX
-[Nome do Membro 2] - Matrícula: XXXXX
-[Nome do Membro 3] - Matrícula: XXXXX
+Enzo Santorelli Peres 
+Felipe Alves de Moraes 
+Gustavo Goes Bastos 
+Jose Guilherme Araujo da Silva
+Lucas Rodrigo Carvalho Cruz
+Marcos Henrique Sodré Marques 
+Pedro Henrique Santos Leocádio
+Pietra Rocha Gouveia
 
 🗂️ Divisão de Funções
 [Nome do Membro 1]

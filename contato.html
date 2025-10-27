@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Age - Fale Conosco</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="img/logo hotel.png" alt="Logo Hotel Age - Sua melhor hospedagem">
+            <h1>Hotel Age</h1>
+            <p>Conforto e Hospitalidade desde 1995</p>
+        </div>
+        <nav aria-label="Menu Principal">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="quartos.html">Quartos</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="localizacao.html">Localização</a></li>
+                <li><a href="guia-cidade.html">Guia da Cidade</a></li>
+                <li><a href="promocoes.html">Promoções</a></li>
+                <li><a href="contato.html" aria-current="page">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="header-contato">
+            <h2>Fale Conosco</h2>
+            <p>Estamos prontos para atendê-lo. Escolha a melhor forma de contato abaixo ou preencha nosso formulário.</p>
+        </section>
+
+        <section id="info-contato">
+            <h3>Canais de Atendimento</h3>
+            <dl>
+                <dt>Reservas e Informações:</dt>
+                <dd><a href="tel:+551133334444">(11) 3333-4444</a> (Atendimento 24h)</dd>
+                <dt>WhatsApp:</dt>
+                <dd><a href="https://wa.me/5511999998888" target="_blank">(11) 99999-8888</a></dd>
+                <dt>E-mail Geral:</dt>
+                <dd><a href="mailto:contato@hotelage.com">contato@hotelage.com</a></dd>
+                <dt>E-mail do SAC:</dt>
+                <dd><a href="mailto:sac@hotelage.com">sac@hotelage.com</a></dd>
+                <dt>Endereço:</dt>
+                <dd><address>Avenida Paulista, 1234 - Bela Vista, São Paulo - SP</address></dd>
+            </dl>
+        </section>
+
+        <section id="formulario-contato">
+            <h3>Envie sua Mensagem</h3>
+            <form action="enviar_contato.php" method="post">
+                <fieldset>
+                    <legend>Detalhes do Contato</legend>
+
+                    <div>
+                        <label for="nome">Nome Completo*:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div>
+                        <label for="email-contato">E-mail*:</label>
+                        <input type="email" id="email-contato" name="email" required>
+                    </div>
+
+                    <div>
+                        <label for="assunto">Assunto*:</label>
+                        <select id="assunto" name="assunto" required>
+                            <option value="">Selecione o assunto</option>
+                            <option value="reserva">Dúvidas sobre Reserva</option>
+                            <option value="orcamento">Orçamento para Eventos</option>
+                            <option value="feedback">Sugestões ou Reclamações (SAC)</option>
+                            <option value="outros">Outros Assuntos</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="mensagem">Mensagem*:</label>
+                        <textarea id="mensagem" name="mensagem" rows="6" required maxlength="1000"></textarea>
+                    </div>
+                </fieldset>
+
+                <div>
+                    <button type="submit">Enviar Mensagem</button>
+                    <button type="reset">Limpar Campos</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        </footer>
+</body>
+
+</html>

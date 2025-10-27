@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo Gráfico - Hotel Age</title>
+</head>
+<body>
+    <header>
+        <h1>Protótipo Gráfico da Primeira Fase</h1>
+        <p>Demonstração do uso da tag &lt;canvas&gt; em HTML5.</p>
+    </header>
+
+    <main>
+        <section>
+            <h3>Selo de Qualidade em Canvas</h3>
+            
+            <canvas id="seloCanvas" width="250" height="150" style="border: 2px solid #0056b3; background-color: #f0f0f0;">
+                Seu navegador não suporta o elemento canvas.
+            </canvas>
+            
+            <p>Este desenho em canvas representa nosso selo de qualidade visual. Ele é gerado dinamicamente pelo navegador, cumprindo o requisito de uso da tecnologia Canvas.</p>
+        </section>
+        
+        <section>
+            <h3>Código JavaScript de Desenho:</h3>
+            <p>O script abaixo desenha o retângulo e o texto no canvas:</p>
+            
+            <pre>
+                // O JavaScript é o que desenha no canvas
+                const canvas = document.getElementById('seloCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Desenha o fundo (Retângulo Principal)
+                ctx.fillStyle = '#0056b3'; // Azul escuro
+                ctx.fillRect(20, 30, 210, 90);
+                
+                // Desenha a borda amarela
+                ctx.strokeStyle = '#FFC300';
+                ctx.lineWidth = 4;
+                ctx.strokeRect(20, 30, 210, 90);
+
+                // Adiciona o texto do nome do hotel
+                ctx.fillStyle = '#FFFFFF'; // Branco
+                ctx.font = '24px Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('HOTEL AGE', 125, 85);
+            </pre>
+        </section>
+        
+        <p><a href="index.html">Voltar para a Página Inicial</a></p>
+    </main>
+
+    <script>
+        // O JavaScript que executa o desenho
+        const canvas = document.getElementById('seloCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Desenha o fundo (Retângulo Principal)
+        ctx.fillStyle = '#0056b3'; // Azul escuro
+        ctx.fillRect(20, 30, 210, 90);
+        
+        // Desenha a borda amarela
+        ctx.strokeStyle = '#FFC300';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(20, 30, 210, 90);
+
+        // Adiciona o texto do nome do hotel
+        ctx.fillStyle = '#FFFFFF'; // Branco
+        ctx.font = '24px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('HOTEL AGE', 125, 85);
+    </script>
+</body>
+</html>
