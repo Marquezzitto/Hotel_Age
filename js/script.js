@@ -31,30 +31,32 @@ function initCarousel() {
     if (!heroSection) return;
 
     // Criar estrutura do carousel
-    const carouselHTML = `<div class="carousel-container">
+    // AQUI ESTÁ A CORREÇÃO: A crase (`) no início e no fim do bloco HTML
+    const carouselHTML = ` 
+    <div class="carousel-container">
         <div class="carousel-slide active">
-            <img src="img/WhatsApp Image 2025-10-12 at 18.24.05.jpg" alt="Fachada do Hotel Age">
+            <img src="img/Foto7.jpeg" alt="Fachada do Hotel Age">
             <div class="carousel-content">
                 <h2>Bem-vindo ao Hotel Age</h2>
                 <p>Experimente o melhor da hospitalidade brasileira</p>
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="img/634859496.jpg" alt="Quarto confortável">
+            <img src="img/Quarto.png" alt="Quarto confortável">
             <div class="carousel-content">
                 <h2>Quartos Confortáveis</h2>
                 <p>Acomodações pensadas para seu bem-estar</p>
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="img/WhatsApp Image 2025-10-12 at 18.15.44.jpg" alt="Lobby elegante">
+            <img src="img/Foto1.jpeg" alt="Lobby elegante">
             <div class="carousel-content">
                 <h2>Ambiente Sofisticado</h2>
                 <p>Elegância em cada detalhe</p>
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="img/WhatsApp Image 2025-10-12 at 18.25.23.jpg" alt="Restaurante">
+            <img src="img/Foto9.jpeg" alt="Restaurante">
             <div class="carousel-content">
                 <h2>Gastronomia de Excelência</h2>
                 <p>Sabores que encantam</p>
@@ -69,6 +71,7 @@ function initCarousel() {
             <span class="indicator" onclick="goToSlide(3)"></span>
         </div>
     </div>`;
+    // FIM DA CORREÇÃO
 
     // Substituir conteúdo existente
     heroSection.innerHTML = carouselHTML;
@@ -268,7 +271,6 @@ function showMessage(message, type) {
     }, 5000);
 }
 
-/* =================================== MÁSCARA DE TELEFONE =================================== */
 document.addEventListener('DOMContentLoaded', function() {
     const phoneInputs = document.querySelectorAll('input[type="tel"]');
     phoneInputs.forEach(input => {
@@ -290,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-/* =================================== SMOOTH SCROLL =================================== */
 
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -307,8 +308,6 @@ function initSmoothScroll() {
         });
     });
 }
-
-/* =================================== ANIMAÇÕES AO SCROLL =================================== */
 
 function initScrollAnimations() {
     const observerOptions = {
