@@ -30,17 +30,19 @@ Pedro Henrique Santos Leocádio
 Pietra Rocha Gouveia
 
 🗂️ Divisão de Funções
-[Nome do Membro 1]
+[Marcos Henrique Sodré Marques, Felipe Alves de Moraes, Enzo Santorelli Peres, Pietra Rocha Gouveia ]
 
 Páginas: index.html, quartos.html, servicos.html
 Responsabilidades: Estrutura inicial, página principal, seções de quartos e serviços
 
-[Nome do Membro 2]
+[Marcos Henrique Sodré Marques, Felipe Alves de Moraes, Jose Guilherme Araujo da Silva, Pietra Rocha Gouveia]
+
 
 Páginas: reservas.html, contato.html, localizacao.html, promocoes.html
 Responsabilidades: Formulários, validações, integração com mapas
 
-[Nome do Membro 3]
+[Marcos Henrique Sodré Marques, Felipe Alves de Moraes, Gustavo Goes Bastos, Lucas Rodrigo Carvalho Cruz, Pedro Henrique Santos Leocádio, Pietra Rocha Gouveia]
+
 
 Páginas: sobre.html, galeria.html, avaliacoes.html
 Responsabilidades: Conteúdo institucional, recursos multimídia, documentação
