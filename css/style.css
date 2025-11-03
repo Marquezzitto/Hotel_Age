@@ -566,28 +566,33 @@ figcaption {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ***** CORREÇÃO APLICADA AQUI ***** */
 /* Esta regra corrige o título do quarto que ficava "preso" no topo */
+/* e garante a cor do texto para ser visível */
 .quarto-detalhe header {
     flex: 1 1 100%; /* Ocupa toda a largura da section */
     background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
-    color: var(--white); /* Cor do texto branca */
+    color: var(--white); /* Garante que o texto do header seja branco */
     padding: 1.5rem 2rem;
     border-radius: var(--border-radius); /* Aplicar border-radius em todos os cantos */
     margin-bottom: 1rem; /* Apenas um margin-bottom para separar do conteúdo */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
+    position: static; /* ESSENCIAL: Remove qualquer comportamento sticky ou fixed herdado */
+    top: auto; /* Garante que não haja top fixo */
 }
 
-/* Esta regra corrige a cor do título do quarto (para branco) */
+/* Garante que o H3 dentro do cabeçalho azul seja branco */
 .quarto-detalhe header h3 {
-    color: var(--white); /* Garante que o H3 dentro do cabeçalho azul seja branco */
+    color: var(--white);
     font-size: 2rem;
     margin-top: 0;
     border-bottom: none; /* Remove borda padrão */
     padding-bottom: 0;
 }
-/* ***** FIM DA CORREÇÃO ***** */
+/* Garante que o H4 (se existir) dentro do cabeçalho azul também seja branco */
+.quarto-detalhe header h4 {
+    color: var(--white);
+}
 
 
 .quarto-detalhe img {
@@ -930,7 +935,7 @@ section#header-quartos p { /* Adicionado #header-quartos aqui, caso tenha parág
 
 footer {
     background: linear-gradient(135deg, var(--dark-gray), #1a1a1a);
-    color: var(--white);
+    color: var(--white); /* Cor geral do texto do footer é branca */
     padding: 3rem 2rem 1rem;
     margin-top: 4rem;
 }
@@ -955,7 +960,7 @@ footer nav ul {
 }
 
 footer nav a {
-    color: var(--white);
+    color: var(--white); /* Links do footer brancos */
     display: block;
     padding: 0.5rem 0;
     transition: var(--transition);
@@ -977,6 +982,23 @@ footer > div:last-child {
     font-size: 0.9rem;
     opacity: 0.8;
 }
+
+/* Correção: Garante que o texto dentro das sections do footer seja branco */
+footer section p,
+footer section ul,
+footer section li,
+footer section address p {
+    color: var(--white);
+}
+
+/* Correção: Remove o fundo branco e a sombra das sections dentro do footer */
+footer section {
+    background-color: transparent; /* Fundo transparente */
+    box-shadow: none; /* Remove sombra */
+    padding: 0; /* Remove padding extra */
+    margin: 0; /* Remove margem extra */
+}
+
 
 /* Esconder o texto do parágrafo dentro do footer section que tinha o 'Desde 1995' */
 footer section p[rel="author"] {
