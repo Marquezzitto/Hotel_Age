@@ -341,13 +341,14 @@ function calcularPrecoReserva() {
     if (!tipoQuarto || !checkin || !checkout) return;
 
     // Tabela de preços por tipo de quarto
+    // ***** AJUSTE FEITO AQUI *****
     const precos = {
-        'standard': 250,
-        'superior': 350,
-        'luxo': 550,
-        'suite': 800,
-        'presidencial': 1500
+        'simples': 200,
+        'duplo': 300,
+        'triplo': 400,
+        'suite': 600
     };
+    // *****************************
 
     // Função que faz o cálculo
     function calcular() {
