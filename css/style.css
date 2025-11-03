@@ -579,6 +579,7 @@ figcaption {
     text-align: center;
     position: static; /* ESSENCIAL: Remove qualquer comportamento sticky ou fixed herdado */
     top: auto; /* Garante que não haja top fixo */
+    z-index: auto; /* Adicionado: Garante que não haja z-index alto que possa causar sobreposição */
 }
 
 /* Garante que o H3 dentro do cabeçalho azul seja branco */
