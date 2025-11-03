@@ -572,8 +572,8 @@ figcaption {
     background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
     color: var(--white); /* Cor do texto branca */
     padding: 1.5rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Bordas arredondadas no topo */
-    margin: -2rem -2rem 1rem -2rem; /* Negativo para esticar até a borda da section */
+    border-radius: var(--border-radius); /* Aplicar border-radius em todos os cantos */
+    margin-bottom: 1rem; /* Apenas um margin-bottom para separar do conteúdo */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
 }
