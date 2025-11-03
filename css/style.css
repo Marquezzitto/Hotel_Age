@@ -140,17 +140,18 @@ nav a:hover::after {
     position: relative;
     overflow: hidden;
     background-color: var(--dark-gray);
-    min-height: 500px;
+    min-height: 500px; /* Garante altura mínima para o carousel */
 }
 
-.carousel-container {
+/* Remover, pois o JavaScript do carousel deve criar/gerenciar esses elementos */
+/* .carousel-container {
     position: relative;
     width: 100%;
     height: 500px;
     overflow: hidden;
-}
+} */
 
-.carousel-slide {
+/* .carousel-slide {
     display: none;
     width: 100%;
     height: 100%;
@@ -160,7 +161,7 @@ nav a:hover::after {
 
 .carousel-slide.active {
     display: block;
-}
+} */
 
 .carousel-slide img {
     width: 100%;
@@ -179,6 +180,7 @@ nav a:hover::after {
     padding: 2rem 3rem;
     border-radius: var(--border-radius);
     backdrop-filter: blur(5px);
+    z-index: 5; /* Garante que o conteúdo fique sobre a imagem */
 }
 
 .carousel-content h2 {
@@ -294,18 +296,19 @@ section h4 {
 }
 
 /* ===================================
-   SELO DE QUALIDADE
+   SELO DE QUALIDADE (sobre.html)
    =================================== */
 
-#selo-qualidade {
+#certificacao { /* Renomeado de #selo-qualidade para refletir o ID no HTML */
     text-align: center;
     background: linear-gradient(135deg, var(--light-gray), var(--white));
 }
 
-#selo-qualidade svg {
+#certificacao svg {
     margin: 1rem auto;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
 }
+
 
 /* ===================================
    FORMULÁRIOS
@@ -371,7 +374,8 @@ textarea {
     min-height: 120px;
 }
 
-button {
+/* Botões para formulários */
+form button { /* Ajustando para botões dentro de formulários */
     background-color: var(--primary-color);
     color: var(--white);
     padding: 1rem 2rem;
@@ -384,27 +388,28 @@ button {
     margin: 0.5rem;
 }
 
-button:hover {
+form button:hover {
     background-color: var(--dark-blue);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-button[type="reset"] {
+form button[type="reset"] {
     background-color: #6c757d;
 }
 
-button[type="reset"]:hover {
+form button[type="reset"]:hover {
     background-color: #5a6268;
 }
 
-button[type="submit"] {
+form button[type="submit"] {
     background-color: #28a745;
 }
 
-button[type="submit"]:hover {
+form button[type="submit"]:hover {
     background-color: #218838;
 }
+
 
 /* Estilos específicos para formulário de contato */
 #header-contato {
@@ -501,6 +506,117 @@ figcaption {
     margin-top: 0.5rem;
 }
 
+/* Layout de grid para os cartões de quartos na página inicial */
+.quartos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.quarto-card {
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 1.5rem; /* Espaço para o botão */
+    display: flex; /* Para empurrar o botão para o final */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.quarto-card img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-bottom: 1rem;
+}
+
+.quarto-card h3 {
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+}
+
+.quarto-card p {
+    font-size: 0.95rem;
+    color: #666;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço restante */
+}
+
+/* Estilo para os detalhes dos quartos (quartos.html) */
+.quarto-detalhe {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+    gap: 2rem;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quarto-detalhe header {
+    flex: 1 1 100%; /* Ocupa toda a largura, mas pode diminuir */
+    padding: 0; /* Remover padding padrão do article/header */
+    margin-bottom: 1rem;
+}
+
+.quarto-detalhe header h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quarto-detalhe img {
+    flex: 1 1 400px; /* Largura mínima de 400px, pode crescer ou diminuir */
+    max-width: 100%; /* Garante que não ultrapasse o container */
+    height: 300px; /* Altura fixa para as imagens de detalhe */
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin: 0; /* Remover margin padrão do article img */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.quarto-info {
+    flex: 1 1 350px; /* Largura mínima de 350px, pode crescer ou diminuir */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para o final */
+}
+
+.quarto-info p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.quarto-info ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.quarto-info li {
+    margin-bottom: 0.5rem;
+}
+
+.quarto-info .preco {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
 /* ===================================
    TABELAS
    =================================== */
@@ -580,6 +696,23 @@ dd {
     margin: 1.5rem 0;
 }
 
+/* Estilo para as imagens da galeria */
+#galeria-quartos img,
+#galeria-areas-comuns img,
+#galeria-restaurante img {
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#galeria-quartos img:hover,
+#galeria-areas-comuns img:hover,
+#galeria-restaurante img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
 /* ===================================
    VÍDEO E ÁUDIO
    =================================== */
@@ -597,18 +730,33 @@ video, audio {
    LOCALIZAÇÃO / IFRAME
    =================================== */
 
-iframe {
-    width: 100%;
+.map-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção de vídeo 16:9 (altura/largura) */
+    height: 0;
+    overflow: hidden;
     max-width: 100%;
-    height: 450px;
-    border: none;
+    background: var(--light-gray); /* Placeholder */
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin: 2rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos específicos para página de localização */
-body > h1 {
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--border-radius);
+}
+
+
+/* body > h1, body > iframe, body > p são genéricos e podem causar problemas.
+   É melhor estilizar os elementos dentro de sections na main.
+   Removendo-os para evitar conflitos, assumindo que o conteúdo está dentro de <main> <section> */
+/* body > h1 {
     color: var(--primary-color);
     text-align: center;
     padding: 2rem;
@@ -629,7 +777,7 @@ body > p {
     margin: 2rem auto;
     max-width: 1200px;
     padding: 0 2rem;
-}
+} */
 
 /* ===================================
    ENDEREÇO
@@ -642,8 +790,94 @@ address {
 }
 
 /* ===================================
-   LINKS E BOTÕES CTA
+   LINKS E BOTÕES CTA (Botões Globais)
    =================================== */
+
+/* Estilo para botões de ação principal */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color); /* Azul padrão */
+    color: white;
+    padding: 12px 25px; /* Aumentado */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1.1rem; /* Aumentado */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px; /* Para dar espaço */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-blue); /* Azul mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Estilo para botões secundários (ex: Saiba Mais) */
+.btn-secondary {
+    display: inline-block;
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 10px 20px; /* Ajustado */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1rem; /* Ajustado */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    margin-top: 15px; /* Para separar do texto acima */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilo específico para o botão de reserva nos detalhes do quarto */
+.btn-reservar {
+    display: inline-block;
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 14px 30px; /* Mais destaque */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1.2rem; /* Mais destaque */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    margin-top: 20px; /* Mais destaque */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 100%; /* Ocupa a largura total da coluna de info */
+    box-sizing: border-box;
+}
+
+.btn-reservar:hover {
+    background-color: #218838; /* Verde mais escuro no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+
+/* Ajustes para layout dos botões em cards */
+.quarto-card a.btn-secondary {
+    margin-top: auto; /* Empurra o botão para a parte inferior do card */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    align-self: center; /* Centraliza horizontalmente */
+}
+
+.quarto-detalhe .quarto-info a.btn-reservar {
+    margin-top: 20px; /* Espaço do botão */
+}
+
 
 section#cta,
 section#cta-galeria,
@@ -662,9 +896,9 @@ section#cta-galeria h2 {
     padding-bottom: 0.5rem;
 }
 
-section#cta a,
-section#cta-galeria a,
-.btn-primary {
+/* Remover estes estilos, pois .btn-primary já os substitui */
+/* section#cta a,
+section#cta-galeria a {
     display: inline-block;
     background-color: var(--secondary-color);
     color: var(--dark-blue);
@@ -676,12 +910,12 @@ section#cta-galeria a,
 }
 
 section#cta a:hover,
-section#cta-galeria a:hover,
-.btn-primary:hover {
+section#cta-galeria a:hover {
     background-color: var(--white);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
+} */
+
 
 /* ===================================
    FOOTER
@@ -741,17 +975,50 @@ footer > div:last-child {
    RESPONSIVIDADE
    =================================== */
 
+@media (max-width: 992px) {
+    .quarto-detalhe {
+        flex-direction: column; /* Empilha a imagem e info em telas médias */
+        align-items: center;
+    }
+
+    .quarto-detalhe img {
+        height: 250px; /* Ajusta altura da imagem em telas menores */
+        margin-bottom: 1.5rem;
+    }
+
+    .quarto-detalhe .quarto-info {
+        text-align: center; /* Centraliza o texto na info do quarto */
+    }
+
+    .quarto-info .preco {
+        text-align: center; /* Centraliza o preço também */
+    }
+}
+
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.5rem;
     }
     
+    header > div:first-child {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header > div:first-child > p {
+        margin-top: -0.5rem;
+    }
+    
     nav ul {
         flex-direction: column;
+        align-items: center; /* Centraliza os itens do menu */
     }
     
     nav a {
         padding: 0.75rem 1rem;
+        width: 100%; /* Ocupa a largura total para melhor clique */
+        text-align: center;
     }
     
     .carousel-content h2 {
@@ -781,6 +1048,43 @@ footer > div:last-child {
     
     th, td {
         padding: 0.5rem;
+    }
+
+    .quartos-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+    }
+
+    .quarto-card img {
+        height: 180px; /* Ajuste para mobile */
+    }
+
+    .quarto-detalhe img {
+        width: 100%; /* Ocupa largura total */
+        height: 200px;
+    }
+
+    .quarto-detalhe .quarto-info ul {
+        text-align: left; /* Mantém lista alinhada à esquerda */
+        margin: 1.5rem auto; /* Centraliza a lista com margens */
+        max-width: 300px; /* Limita largura da lista para não ficar muito grande */
+    }
+    
+    .btn-reservar {
+        font-size: 1.1rem; /* Ajuste para mobile */
+        padding: 12px 20px;
+    }
+
+    footer > div:first-child {
+        grid-template-columns: 1fr; /* Uma coluna no footer em telas pequenas */
+        text-align: center;
+    }
+
+    footer nav ul {
+        align-items: center; /* Centraliza links do footer */
+    }
+
+    footer nav a:hover {
+        padding-left: 0; /* Remove padding na lateral para mobile */
     }
 }
 
