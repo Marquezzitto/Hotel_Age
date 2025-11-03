@@ -10,23 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     iniciarValidacaoFormulario();
     iniciarBotaoVoltarTopo();
     calcularPrecoReserva();
-
-    // --- Funcionalidade do Menu Hambúrguer (Corrigida) ---
-    const hamburgerBtn = document.querySelector('.hamburger-menu');
-    const navElement = document.querySelector('header nav'); // CORRIGIDO: Seleciona a tag <nav>
-
-    if (hamburgerBtn && navElement) {
-        hamburgerBtn.addEventListener('click', () => {
-            navElement.classList.toggle('active'); // CORRIGIDO: Adiciona/remove 'active' da <nav>
-            hamburgerBtn.classList.toggle('open'); // Adiciona/remove 'open' do botão
-            
-            // Adiciona acessibilidade
-            const isExpanded = navElement.classList.contains('active');
-            hamburgerBtn.setAttribute('aria-expanded', isExpanded);
-        });
-    }
-    // --- Fim da Funcionalidade do Menu Hambúrguer ---
-
+    iniciarMenuHamburguer(); // <<< ADICIONADO INICIALIZADOR DO MENU
     console.log('✓ Sistema Hotel Age carregado com sucesso!');
 });
 
@@ -36,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Variável que guarda qual slide está ativo
 let slideAtual = 0;
+// Variável que controla a troca automática
+let intervaloTroca;
 
 // Função para criar o carousel na página
 function iniciarCarousel() {
@@ -142,9 +128,6 @@ function irParaSlide(numero) {
     indicadores[slideAtual].classList.add('active');
 }
 
-// Variável que controla a troca automática
-let intervaloTroca;
-
 // Função para iniciar a troca automática de slides
 function iniciarTrocaAutomatica() {
     // A cada 5 segundos (5000 milissegundos), muda para o próximo slide
@@ -224,10 +207,9 @@ function validarCampo(campo) {
 
     // 3. Valida telefone
     if (campo.type === 'tel' && campo.value) {
-        // Expressão regular para validar telefone brasileiro
-        const telefoneValido = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
-        if (!telefoneValido.test(campo.value)) {
-            mostrarErro(campo, 'Formato: (11) 99999-9999');
+        // Validação simples, já que a máscara ajuda
+        if (campo.value.length < 14) { // (11) 9999-9999 = 14 chars
+            mostrarErro(campo, 'Telefone incompleto');
             return false;
         }
     }
@@ -318,6 +300,22 @@ function iniciarBotaoVoltarTopo() {
     botao.innerHTML = '↑';
     botao.title = 'Voltar ao topo';
 
+    // Estilos do botão (para não depender de CSS externo)
+    botao.style.position = 'fixed';
+    botao.style.bottom = '20px';
+    botao.style.right = '20px';
+    botao.style.width = '40px';
+    botao.style.height = '40px';
+    botao.style.backgroundColor = 'var(--primary-color, #0056b3)';
+    botao.style.color = 'white';
+    botao.style.border = 'none';
+    botao.style.borderRadius = '50%';
+    botao.style.fontSize = '24px';
+    botao.style.cursor = 'pointer';
+    botao.style.display = 'none';
+    botao.style.zIndex = '999';
+
+
     // Quando clicar no botão
     botao.addEventListener('click', function() {
         // Volta ao topo da página suavemente
@@ -358,14 +356,12 @@ function calcularPrecoReserva() {
     if (!tipoQuarto || !checkin || !checkout) return;
 
     // Tabela de preços por tipo de quarto
-    // ***** AJUSTE FEITO AQUI *****
     const precos = {
         'simples': 200,
         'duplo': 300,
         'triplo': 400,
         'suite': 600
     };
-    // *****************************
 
     // Função que faz o cálculo
     function calcular() {
@@ -393,7 +389,9 @@ function calcularPrecoReserva() {
             if (!resumo) {
                 resumo = document.createElement('section');
                 resumo.id = 'resumo';
-                form.appendChild(resumo);
+                // Insere antes dos botões
+                const botoesForm = form.querySelector('div:last-of-type');
+                form.insertBefore(resumo, botoesForm); 
             }
 
             // Atualiza o conteúdo do resumo
@@ -406,8 +404,9 @@ function calcularPrecoReserva() {
             `;
             resumo.style.backgroundColor = '#f0f8ff';
             resumo.style.padding = '20px';
-  S          resumo.style.borderRadius = '8px';
+            resumo.style.borderRadius = '8px';
             resumo.style.marginTop = '20px';
+            resumo.style.border = '1px solid var(--primary-color, #0056b3)';
         }
     }
 
@@ -418,35 +417,60 @@ function calcularPrecoReserva() {
 }
 
 /* ========================================
-   5. FORMATAÇÃO AUTOMÁTICA DE TELEFONE
+   5. FUNCIONALIDADE DO MENU HAMBÚRGUER (CORRIGIDO)
+   ======================================== */
+function iniciarMenuHamburguer() {
+    const hamburgerBtn = document.querySelector('.hamburger-menu');
+    // CORREÇÃO: Seleciona a tag <nav> que é o contêiner do menu
+    const navElement = document.querySelector('header nav'); 
+
+    if (hamburgerBtn && navElement) {
+        hamburgerBtn.addEventListener('click', () => {
+            // CORREÇÃO: Adiciona/remove a classe 'active' na tag <nav>
+            navElement.classList.toggle('active'); 
+            hamburgerBtn.classList.toggle('open');
+            // Atualiza o aria-expanded para acessibilidade
+            const isExpanded = navElement.classList.contains('active');
+            hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+}
+
+
+/* ========================================
+   6. FORMATAÇÃO AUTOMÁTICA DE TELEFONE
    ======================================== */
 
-// Busca todos os campos de telefone
-const camposTelefone = document.querySelectorAll('input[type="tel"]');
+// Este listener é executado DEPOIS do DOMContentLoaded,
+// então movemos a lógica de formatação para dentro dele.
+document.addEventListener('DOMContentLoaded', function() {
+    // Busca todos os campos de telefone
+    const camposTelefone = document.querySelectorAll('input[type="tel"]');
 
-// Para cada campo de telefone
-camposTelefone.forEach(function(campo) {
-    // Quando digitar algo
-    campo.addEventListener('input', function(e) {
-        // Remove tudo que não é número
-        let valor = e.target.value.replace(/\D/g, '');
-        
-        // Formata o telefone enquanto digita
-        if (valor.length > 0) {
-            if (valor.length <= 2) {
-                valor = '(' + valor;
-            } else if (valor.length <= 6) {
-                valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2);
-            } else if (valor.length <= 10) {
-                valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2, 6) + '-' + valor.slice(6);
-            } else {
-                valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2, 7) + '-' + valor.slice(7, 11);
-            }
-        }
-        
-        // Atualiza o valor do campo
-        e.target.value = valor;
-    });
+    // Para cada campo de telefone
+    camposTelefone.forEach(function(campo) {
+        // Quando digitar algo
+        campo.addEventListener('input', function(e) {
+            // Remove tudo que não é número
+            let valor = e.target.value.replace(/\D/g, '');
+            
+            // Formata o telefone enquanto digita
+            if (valor.length > 0) {
+                if (valor.length <= 2) {
+                    valor = '(' + valor;
+                } else if (valor.length <= 6) {
+                    valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2);
+                } else if (valor.length <= 10) {
+                    valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2, 6) + '-' + valor.slice(6);
+                } else {
+                    valor = '(' + valor.slice(0, 2) + ') ' + valor.slice(2, 7) + '-' + valor.slice(7, 11);
+                }
+            }
+            
+            // Atualiza o valor do campo
+            e.target.value = valor;
+        });
+    });
 });
 
 /* ========================================
