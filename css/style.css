@@ -49,9 +49,6 @@ header {
     color: var(--white);
     padding: 1rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 header > .header-content { /* Wrapper para logo, título, slogan e hambúrguer */
@@ -88,7 +85,7 @@ header > .header-content > p { /* Slogan */
 /* Navegação */
 nav {
     background-color: rgba(0, 0, 0, 0.2);
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 .nav-list {
@@ -96,7 +93,7 @@ nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 2800px;
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -107,7 +104,7 @@ nav {
 
 .nav-list a {
     display: block;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     color: var(--white);
     font-weight: 500;
     transition: var(--transition);
