@@ -566,7 +566,7 @@ figcaption {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* NOVO: Estilo para o cabeçalho azul escuro dos detalhes do quarto */
+/* ***** CORREÇÃO APLICADA AQUI ***** */
 .quarto-detalhe header {
     flex: 1 1 100%; /* Ocupa toda a largura da section */
     background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
@@ -577,6 +577,7 @@ figcaption {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
 }
+/* ***** FIM DA CORREÇÃO ***** */
 
 .quarto-detalhe header h3 {
     color: var(--white); /* Garante que o H3 dentro do cabeçalho azul seja branco */
