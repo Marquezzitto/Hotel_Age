@@ -79,6 +79,7 @@ header > div:first-child > p {
     font-size: 0.9rem;
     font-style: italic;
     opacity: 0.9;
+    margin: 0;
 }
 
 /* Navegação */
@@ -141,17 +142,20 @@ nav a:hover::after {
     overflow: hidden;
     background-color: var(--dark-gray);
     min-height: 500px; /* Garante altura mínima para o carousel */
+    padding: 0; /* Remove padding da section */
+    margin: 0; /* Remove margin da section */
+    box-shadow: none; /* Remove sombra da section */
+    border-radius: 0; /* Remove borda da section */
 }
 
-/* Remover, pois o JavaScript do carousel deve criar/gerenciar esses elementos */
-/* .carousel-container {
+.carousel-container {
     position: relative;
     width: 100%;
     height: 500px;
     overflow: hidden;
-} */
+}
 
-/* .carousel-slide {
+.carousel-slide {
     display: none;
     width: 100%;
     height: 100%;
@@ -161,7 +165,7 @@ nav a:hover::after {
 
 .carousel-slide.active {
     display: block;
-} */
+}
 
 .carousel-slide img {
     width: 100%;
@@ -187,6 +191,9 @@ nav a:hover::after {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--white); /* Garante a cor no H2 */
+    border-bottom: none; /* Remove borda padrão do H2 de section */
+    padding-bottom: 0;
 }
 
 .carousel-content p {
@@ -296,10 +303,10 @@ section h4 {
 }
 
 /* ===================================
-   SELO DE QUALIDADE (sobre.html)
+   CERTIFICAÇÃO (sobre.html)
    =================================== */
 
-#certificacao { /* Renomeado de #selo-qualidade para refletir o ID no HTML */
+#certificacao {
     text-align: center;
     background: linear-gradient(135deg, var(--light-gray), var(--white));
 }
@@ -308,7 +315,6 @@ section h4 {
     margin: 1rem auto;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
 }
-
 
 /* ===================================
    FORMULÁRIOS
@@ -375,7 +381,7 @@ textarea {
 }
 
 /* Botões para formulários */
-form button { /* Ajustando para botões dentro de formulários */
+form button {
     background-color: var(--primary-color);
     color: var(--white);
     padding: 1rem 2rem;
@@ -409,7 +415,6 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: #218838;
 }
-
 
 /* Estilos específicos para formulário de contato */
 #header-contato {
@@ -712,7 +717,6 @@ dd {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-
 /* ===================================
    VÍDEO E ÁUDIO
    =================================== */
@@ -751,33 +755,6 @@ video, audio {
     border: 0;
     border-radius: var(--border-radius);
 }
-
-
-/* body > h1, body > iframe, body > p são genéricos e podem causar problemas.
-   É melhor estilizar os elementos dentro de sections na main.
-   Removendo-os para evitar conflitos, assumindo que o conteúdo está dentro de <main> <section> */
-/* body > h1 {
-    color: var(--primary-color);
-    text-align: center;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 1200px;
-}
-
-body > iframe {
-    display: block;
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-body > p {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--dark-gray);
-    margin: 2rem auto;
-    max-width: 1200px;
-    padding: 0 2rem;
-} */
 
 /* ===================================
    ENDEREÇO
@@ -866,7 +843,6 @@ address {
     box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-
 /* Ajustes para layout dos botões em cards */
 .quarto-card a.btn-secondary {
     margin-top: auto; /* Empurra o botão para a parte inferior do card */
@@ -878,10 +854,11 @@ address {
     margin-top: 20px; /* Espaço do botão */
 }
 
-
 section#cta,
 section#cta-galeria,
-section#ajuda {
+section#ajuda,
+section#header-promocoes,
+section#header-guia {
     text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
     color: var(--white);
@@ -889,33 +866,50 @@ section#ajuda {
 }
 
 section#cta h2,
-section#cta-galeria h2 {
+section#cta-galeria h2,
+section#header-promocoes h2,
+section#header-guia h2 {
     color: var(--white);
     border-bottom: 3px solid var(--secondary-color);
     display: inline-block;
     padding-bottom: 0.5rem;
 }
 
-/* Remover estes estilos, pois .btn-primary já os substitui */
-/* section#cta a,
-section#cta-galeria a {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--dark-blue);
-    padding: 1rem 2rem;
-    margin: 1rem 0.5rem;
-    border-radius: var(--border-radius);
-    font-weight: bold;
-    transition: var(--transition);
+section#header-promocoes p,
+section#header-guia p {
+    color: var(--white);
+    max-width: 800px;
+    margin: 1rem auto 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
-section#cta a:hover,
-section#cta-galeria a:hover {
-    background-color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-} */
+/* NOVO: Estilo para os cabeçalhos internos das promoções de Natal e Ano Novo */
+#promocao-natal header,
+#promocao-anonovo header {
+    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
+    color: var(--white); /* Cor do texto branca */
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Bordas arredondadas no topo */
+    margin: -2rem -2rem 1rem -2rem; /* Negativo para esticar até a borda da section */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
 
+#promocao-natal header h3,
+#promocao-anonovo header h3 {
+    color: var(--white); /* Garante que o H3 seja branco */
+    margin-top: 0;
+    border-bottom: none; /* Remove borda padrão */
+    padding-bottom: 0;
+}
+
+#promocao-natal header h4,
+#promocao-anonovo header h4 {
+    color: var(--secondary-color); /* H4 em amarelo para destaque */
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
 
 /* ===================================
    FOOTER
@@ -971,27 +965,33 @@ footer > div:last-child {
     opacity: 0.8;
 }
 
+/* Esconder o texto do parágrafo dentro do footer section que tinha o 'Desde 1995' */
+footer section p[rel="author"] {
+    display: none;
+}
+
+
 /* ===================================
    RESPONSIVIDADE
    =================================== */
 
 @media (max-width: 992px) {
     .quarto-detalhe {
-        flex-direction: column; /* Empilha a imagem e info em telas médias */
+        flex-direction: column;
         align-items: center;
     }
 
     .quarto-detalhe img {
-        height: 250px; /* Ajusta altura da imagem em telas menores */
+        height: 250px;
         margin-bottom: 1.5rem;
     }
 
     .quarto-detalhe .quarto-info {
-        text-align: center; /* Centraliza o texto na info do quarto */
+        text-align: center;
     }
 
     .quarto-info .preco {
-        text-align: center; /* Centraliza o preço também */
+        text-align: center;
     }
 }
 
@@ -1012,12 +1012,12 @@ footer > div:last-child {
     
     nav ul {
         flex-direction: column;
-        align-items: center; /* Centraliza os itens do menu */
+        align-items: center;
     }
     
     nav a {
         padding: 0.75rem 1rem;
-        width: 100%; /* Ocupa a largura total para melhor clique */
+        width: 100%;
         text-align: center;
     }
     
@@ -1051,40 +1051,40 @@ footer > div:last-child {
     }
 
     .quartos-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+        grid-template-columns: 1fr;
     }
 
     .quarto-card img {
-        height: 180px; /* Ajuste para mobile */
+        height: 180px;
     }
 
     .quarto-detalhe img {
-        width: 100%; /* Ocupa largura total */
+        width: 100%;
         height: 200px;
     }
 
     .quarto-detalhe .quarto-info ul {
-        text-align: left; /* Mantém lista alinhada à esquerda */
-        margin: 1.5rem auto; /* Centraliza a lista com margens */
-        max-width: 300px; /* Limita largura da lista para não ficar muito grande */
+        text-align: left;
+        margin: 1.5rem auto;
+        max-width: 300px;
     }
     
     .btn-reservar {
-        font-size: 1.1rem; /* Ajuste para mobile */
+        font-size: 1.1rem;
         padding: 12px 20px;
     }
 
     footer > div:first-child {
-        grid-template-columns: 1fr; /* Uma coluna no footer em telas pequenas */
+        grid-template-columns: 1fr;
         text-align: center;
     }
 
     footer nav ul {
-        align-items: center; /* Centraliza links do footer */
+        align-items: center;
     }
 
     footer nav a:hover {
-        padding-left: 0; /* Remove padding na lateral para mobile */
+        padding-left: 0;
     }
 }
 
