@@ -497,7 +497,7 @@ article img {
 
 article header h3,
 article header h4 {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Cor padrão para h3 e h4 em fundos claros */
 }
 
 figure {
@@ -861,7 +861,7 @@ section#header-promocoes,
 section#header-guia {
     text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
-    color: var(--white);
+    color: var(--white); /* Garante que o texto dentro destas seções seja branco */
     padding: 3rem 2rem;
 }
 
@@ -884,29 +884,29 @@ section#header-guia p {
     opacity: 0.9;
 }
 
-/* NOVO: Estilo para os cabeçalhos internos das promoções de Natal e Ano Novo */
+/* NOVO ESTILO: Cabeçalhos internos das seções de promoção (Natal e Ano Novo) */
 #promocao-natal header,
 #promocao-anonovo header {
-    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
-    color: var(--white); /* Cor do texto branca */
+    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color));
+    color: var(--white); /* Cor padrão do texto no cabeçalho será branca */
     padding: 1.5rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Bordas arredondadas no topo */
-    margin: -2rem -2rem 1rem -2rem; /* Negativo para esticar até a borda da section */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin: -2rem -2rem 1rem -2rem; /* Ajusta para preencher a largura da section */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
 }
 
 #promocao-natal header h3,
 #promocao-anonovo header h3 {
-    color: var(--white); /* Garante que o H3 seja branco */
+    color: var(--white); /* Garante que o H3 seja branco no fundo escuro */
     margin-top: 0;
-    border-bottom: none; /* Remove borda padrão */
+    border-bottom: none;
     padding-bottom: 0;
 }
 
 #promocao-natal header h4,
 #promocao-anonovo header h4 {
-    color: var(--secondary-color); /* H4 em amarelo para destaque */
+    color: var(--secondary-color); /* H4 em amarelo para um bom contraste e destaque */
     margin-bottom: 0;
     font-size: 1.3rem;
 }
