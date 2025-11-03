@@ -54,7 +54,7 @@ header {
     z-index: 1000;
 }
 
-header > .header-content { /* Usando o novo wrapper */
+header > .header-content { /* Wrapper para logo, título, slogan e hambúrguer */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -68,18 +68,21 @@ header img {
     height: 60px;
     border-radius: 50%;
     border: 3px solid var(--secondary-color);
+    flex-shrink: 0; /* Impede que a imagem encolha */
 }
 
 header h1 {
     font-size: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0; /* Impede que o título encolha */
 }
 
-header > .header-content > p { /* Ajustado para o novo wrapper */
+header > .header-content > p { /* Slogan */
     font-size: 0.9rem;
     font-style: italic;
     opacity: 0.9;
     margin: 0;
+    flex-grow: 1; /* Permite que o slogan ocupe o espaço restante */
 }
 
 /* Navegação */
@@ -88,7 +91,7 @@ nav {
     margin-top: 1rem;
 }
 
-.nav-list { /* Alterado para a nova classe 'nav-list' */
+.nav-list {
     list-style: none;
     display: flex;
     justify-content: center;
@@ -102,7 +105,7 @@ nav {
     margin: 0;
 }
 
-.nav-list a { /* Alterado para a nova classe 'nav-list' */
+.nav-list a {
     display: block;
     padding: 1rem 1.5rem;
     color: var(--white);
@@ -111,13 +114,13 @@ nav {
     position: relative;
 }
 
-.nav-list a:hover, /* Alterado para a nova classe 'nav-list' */
+.nav-list a:hover,
 .nav-list a[aria-current="page"] {
     background-color: var(--secondary-color);
     color: var(--dark-blue);
 }
 
-.nav-list a::after { /* Alterado para a nova classe 'nav-list' */
+.nav-list a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -129,7 +132,7 @@ nav {
     transform: translateX(-50%);
 }
 
-.nav-list a:hover::after { /* Alterado para a nova classe 'nav-list' */
+.nav-list a:hover::after {
     width: 80%;
 }
 
@@ -1040,9 +1043,7 @@ footer section {
 
 
 /* Esconder o texto do parágrafo dentro do footer section que tinha o 'Desde 1995' */
-footer section p[rel="author"] {
-    display: none;
-}
+/* Removido, pois a frase agora está no footer */
 
 
 /* ===================================
@@ -1138,7 +1139,7 @@ footer section p[rel="author"] {
     }
     
     .carousel-content p {
-        font-size: 1rem;
+        font-size: 1.0rem; /* Ajuste para melhor legibilidade */
     }
     
     .carousel-btn {
