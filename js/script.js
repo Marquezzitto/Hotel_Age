@@ -32,7 +32,7 @@ function iniciarCarousel() {
     const carouselHTML = `
     <div class="carousel-container">
         <div class="carousel-slide active">
-            <img src="img/Designer.jpg" alt="Fachada do Hotel Age">
+            <img src="img/Designer.png" alt="Fachada do Hotel Age">
             <div class="carousel-content">
                 <h2>Bem-vindo ao Hotel Age</h2>
                 <p>Experimente o melhor da hospitalidade brasileira</p>
@@ -442,5 +442,6 @@ console.log('  - Validação de Formulários');
 console.log('  - Botão Voltar ao Topo');
 console.log('  - Cálculo de Preço');
 console.log('  - Formatação de Telefone');
+
 
 
