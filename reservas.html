@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Reserve seu quarto no Hotel Age - Processo simples e seguro na Av. São Miguel, São Paulo">
-    <title>Reservas - Hotel Age</title>
+    <meta name="description" content="Reserve seu quarto no Age Hotel - Processo simples e seguro na Av. São Miguel, São Paulo">
+    <title>Reservas - Age Hotel</title>
     <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
     <header>
         <div>
-            <img src="img/logo hotel.png" alt="Logo Hotel Age - Sua melhor hospedagem">
-            <h1>Hotel Age</h1>
-            <p>Conforto e Hospitalidade desde 1995</p>
+            <img src="img/logo hotel.png" alt="Logo Age Hotel - Sua melhor hospedagem">
+            <h1>Age Hotel</h1>
+            <p>Conforto e Praticidade na Zona Leste de São Paulo</p>
         </div>
         <nav aria-label="Menu Principal">
             <ul>
@@ -41,8 +41,8 @@
                     <li>✓ Melhor tarifa garantida</li>
                     <li>✓ Cancelamento flexível</li>
                     <li>✓ Upgrade gratuito (sujeito a disponibilidade)</li>
-                    <li>✓ Welcome drink cortesia</li>
-                    <li>✓ Late check-out sem custo adicional</li>
+                    <li>✓ Welcome drink cortesia (mediante pacotes especiais)</li>
+                    <li>✓ Late check-out sem custo adicional (sujeito a disponibilidade)</li>
                 </ul>
             </div>
         </section>
@@ -179,7 +179,7 @@
     <footer>
         <div>
             <section>
-                <h3>Sobre o Hotel Age</h3>
+                <h3>Sobre o Age Hotel</h3>
                 <p>Desde 1995 oferecendo a melhor experiência em hospitalidade.</p>
             </section>
 
@@ -208,10 +208,29 @@
         <hr>
 
         <div>
-            <p>&copy; 2024 Hotel Age.Todos os direitos reservados.</p>
+            <p>© 2024 Age Hotel. Todos os direitos reservados.</p>
         </div>
     </footer>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tipoQuartoParam = urlParams.get('tipo_quarto');
+            
+            if (tipoQuartoParam) {
+                const selectQuarto = document.getElementById('tipo-quarto');
+                if (selectQuarto) {
+                    // Percorre as opções para encontrar a que corresponde ao parâmetro
+                    for (let i = 0; i < selectQuarto.options.length; i++) {
+                        if (selectQuarto.options[i].value === tipoQuartoParam) {
+                            selectQuarto.value = tipoQuartoParam;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
     <script src="js/script.js"></script> 
 </body>
 </html>
