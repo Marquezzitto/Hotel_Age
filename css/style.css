@@ -567,6 +567,7 @@ figcaption {
 }
 
 /* ***** CORREÇÃO APLICADA AQUI ***** */
+/* Esta regra corrige o título do quarto que ficava "preso" no topo */
 .quarto-detalhe header {
     flex: 1 1 100%; /* Ocupa toda a largura da section */
     background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
@@ -577,8 +578,8 @@ figcaption {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
 }
-/* ***** FIM DA CORREÇÃO ***** */
 
+/* Esta regra corrige a cor do título do quarto (para branco) */
 .quarto-detalhe header h3 {
     color: var(--white); /* Garante que o H3 dentro do cabeçalho azul seja branco */
     font-size: 2rem;
@@ -586,6 +587,8 @@ figcaption {
     border-bottom: none; /* Remove borda padrão */
     padding-bottom: 0;
 }
+/* ***** FIM DA CORREÇÃO ***** */
+
 
 .quarto-detalhe img {
     flex: 1 1 400px; /* Largura mínima de 400px, pode crescer ou diminuir */
