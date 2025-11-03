@@ -1,393 +1,393 @@
 /* ===================================
-   HOTEL AGE - ESTILOS PRINCIPAIS
-   =================================== */
+   HOTEL AGE - ESTILOS PRINCIPAIS
+   =================================== */
 
 /* Reset e Configurações Gerais */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #0056b3;
-    --secondary-color: #FFC300;
-    --dark-blue: #003d82;
-    --light-gray: #f4f4f4;
-    --dark-gray: #333;
-    --white: #ffffff;
-    --text-color: #333;
-    --border-radius: 8px;
-    --transition: all 0.3s ease;
+    --primary-color: #0056b3;
+    --secondary-color: #FFC300;
+    --dark-blue: #003d82;
+    --light-gray: #f4f4f4;
+    --dark-gray: #333;
+    --white: #ffffff;
+    --text-color: #333;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
 }
 
 /* ===================================
-   HEADER E NAVEGAÇÃO
-   =================================== */
+   HEADER E NAVEGAÇÃO
+   =================================== */
 
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
-    color: var(--white);
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+    color: var(--white);
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header > .header-content { /* Wrapper para logo, título, slogan e hambúrguer */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 header img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid var(--secondary-color);
-    flex-shrink: 0; /* Impede que a imagem encolha */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--secondary-color);
+    flex-shrink: 0; /* Impede que a imagem encolha */
 }
 
 header h1 {
-    font-size: 2rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    flex-shrink: 0; /* Impede que o título encolha */
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0; /* Impede que o título encolha */
 }
 
 header > .header-content > p { /* Slogan */
-    font-size: 0.9rem;
-    font-style: italic;
-    opacity: 0.9;
-    margin: 0;
-    flex-grow: 1; /* Permite que o slogan ocupe o espaço restante */
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin: 0;
+    flex-grow: 1; /* Permite que o slogan ocupe o espaço restante */
 }
 
 /* Navegação */
 nav {
-    background-color: rgba(0, 0, 0, 0.2);
-    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
 }
 
 .nav-list {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .nav-list li {
-    margin: 0;
+    margin: 0;
 }
 
 .nav-list a {
-    display: block;
-    padding: 1rem 1.5rem;
-    color: var(--white);
-    font-weight: 500;
-    transition: var(--transition);
-    position: relative;
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--white);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
 }
 
 .nav-list a:hover,
 .nav-list a[aria-current="page"] {
-    background-color: var(--secondary-color);
-    color: var(--dark-blue);
+    background-color: var(--secondary-color);
+    color: var(--dark-blue);
 }
 
 .nav-list a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background-color: var(--secondary-color);
-    transition: var(--transition);
-    transform: translateX(-50%);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+    transform: translateX(-50%);
 }
 
 .nav-list a:hover::after {
-    width: 80%;
+    width: 80%;
 }
 
 /* Botão de Hambúrguer */
 .hamburger-menu {
-    display: none; /* Esconde por padrão em telas maiores */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-left: auto; /* Empurra o botão para a direita */
-    z-index: 1001; /* Garante que fique acima de tudo */
+    display: none; /* Esconde por padrão em telas maiores */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto; /* Empurra o botão para a direita */
+    z-index: 1001; /* Garante que fique acima de tudo */
 }
 
 .hamburger-menu .bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--white);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
 /* Animação do botão de hambúrguer */
 .hamburger-menu.open .bar:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
+    transform: translateY(11px) rotate(45deg);
 }
 
 .hamburger-menu.open .bar:nth-child(2) {
-    opacity: 0;
+    opacity: 0;
 }
 
 .hamburger-menu.open .bar:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
+    transform: translateY(-11px) rotate(-45deg);
 }
 
 
 /* ===================================
-   CAROUSEL / BANNER PRINCIPAL
-   =================================== */
+   CAROUSEL / BANNER PRINCIPAL
+   =================================== */
 
 #hero {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--dark-gray);
-    min-height: 500px; /* Garante altura mínima para o carousel */
-    padding: 0; /* Remove padding da section */
-    margin: 0; /* Remove margin da section */
-    box-shadow: none; /* Remove sombra da section */
-    border-radius: 0; /* Remove borda da section */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--dark-gray);
+    min-height: 500px; /* Garante altura mínima para o carousel */
+    padding: 0; /* Remove padding da section */
+    margin: 0; /* Remove margin da section */
+    box-shadow: none; /* Remove sombra da section */
+    border-radius: 0; /* Remove borda da section */
 }
 
 .carousel-container {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
 }
 
 .carousel-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    animation: fadeIn 0.8s ease-in-out;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 .carousel-slide.active {
-    display: block;
+    display: block;
 }
 
 .carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .carousel-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--white);
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem 3rem;
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(5px);
-    z-index: 5; /* Garante que o conteúdo fique sobre a imagem */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem 3rem;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
+    z-index: 5; /* Garante que o conteúdo fique sobre a imagem */
 }
 
 .carousel-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    color: var(--white); /* Garante a cor no H2 */
-    border-bottom: none; /* Remove borda padrão do H2 de section */
-    padding-bottom: 0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--white); /* Garante a cor no H2 */
+    border-bottom: none; /* Remove borda padrão do H2 de section */
+    padding-bottom: 0;
 }
 
 .carousel-content p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Controles do Carousel */
 .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--white);
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 2rem;
-    transition: var(--transition);
-    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: var(--transition);
+    z-index: 10;
 }
 
 .carousel-btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--dark-blue);
+    background-color: var(--secondary-color);
+    color: var(--dark-blue);
 }
 
 .carousel-btn.prev {
-    left: 1rem;
+    left: 1rem;
 }
 
 .carousel-btn.next {
-    right: 1rem;
+    right: 1rem;
 }
 
 /* Indicadores do Carousel */
 .carousel-indicators {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
 }
 
 .indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 2px solid var(--white);
-    cursor: pointer;
-    transition: var(--transition);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--white);
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 .indicator.active {
-    background-color: var(--secondary-color);
-    transform: scale(1.2);
+    background-color: var(--secondary-color);
+    transform: scale(1.2);
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ===================================
-   MAIN CONTENT
-   =================================== */
+   MAIN CONTENT
+   =================================== */
 
 main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
 }
 
 section {
-    margin: 3rem 0;
-    padding: 2rem;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 section h2 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--secondary-color);
 }
 
 section h3 {
-    color: var(--dark-blue); /* Cor padrão para h3 em fundos claros */
-    font-size: 1.5rem;
-    margin: 1.5rem 0 1rem;
+    color: var(--dark-blue); /* Cor padrão para h3 em fundos claros */
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
 }
 
 section h4 {
-    color: var(--primary-color); /* Cor padrão para h4 em fundos claros */
-    font-size: 1.2rem;
-    margin: 1rem 0 0.5rem;
+    color: var(--primary-color); /* Cor padrão para h4 em fundos claros */
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem;
 }
 
 /* ===================================
-   CERTIFICAÇÃO (sobre.html)
-   =================================== */
+   CERTIFICAÇÃO (sobre.html)
+   =================================== */
 
 #certificacao {
-    text-align: center;
-    background: linear-gradient(135deg, var(--light-gray), var(--white));
+    text-align: center;
+    background: linear-gradient(135deg, var(--light-gray), var(--white));
 }
 
 #certificacao svg {
-    margin: 1rem auto;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    margin: 1rem auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
 }
 
 /* ===================================
-   FORMULÁRIOS
-   =================================== */
+   FORMULÁRIOS
+   =================================== */
 
 form {
-    background-color: var(--light-gray);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    max-width: 800px;
-    margin: 2rem auto;
+    background-color: var(--light-gray);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 800px;
+    margin: 2rem auto;
 }
 
 fieldset {
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 legend {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
 }
 
 label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-    color: var(--dark-gray);
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
 }
 
 input[type="text"],
@@ -397,517 +397,517 @@ input[type="date"],
 input[type="number"],
 select,
 textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-    border: 2px solid #ddd;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: var(--transition);
-    font-family: inherit;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: inherit;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
 }
 
 textarea {
-    resize: vertical;
-    min-height: 120px;
+    resize: vertical;
+    min-height: 120px;
 }
 
 /* Botões para formulários */
 form button {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
-    margin: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 0.5rem;
 }
 
 form button:hover {
-    background-color: var(--dark-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 form button[type="reset"] {
-    background-color: #6c757d;
+    background-color: #6c757d;
 }
 
 form button[type="reset"]:hover {
-    background-color: #5a6268;
+    background-color: #5a6268;
 }
 
 form button[type="submit"] {
-    background-color: #28a745;
+    background-color: #28a745;
 }
 
 form button[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #218838;
 }
 
 /* Estilos específicos para formulário de contato */
 #header-contato {
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
-    color: var(--white);
-    text-align: center;
-    padding: 3rem 2rem;
-    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
 }
 
 #header-contato h2 {
-    color: var(--white);
-    border-bottom: 3px solid var(--secondary-color);
-    display: inline-block;
-    padding-bottom: 0.5rem;
+    color: var(--white);
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 0.5rem;
 }
 
 #info-contato {
-    background-color: var(--light-gray);
+    background-color: var(--light-gray);
 }
 
 #info-contato dl {
-    display: grid;
-    gap: 1.5rem;
+    display: grid;
+    gap: 1.5rem;
 }
 
 #info-contato dt {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: 0;
 }
 
 #info-contato dd {
-    margin-left: 0;
-    padding-left: 1.5rem;
-    border-left: 3px solid var(--secondary-color);
+    margin-left: 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--secondary-color);
 }
 
 #info-contato a {
-    color: var(--primary-color);
-    font-weight: 600;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 #info-contato a:hover {
-    color: var(--dark-blue);
-    text-decoration: underline;
+    color: var(--dark-blue);
+    text-decoration: underline;
 }
 
 #formulario-contato {
-    background-color: var(--white);
+    background-color: var(--white);
 }
 
 #formulario-contato form > div:last-child {
-    text-align: center;
-    margin-top: 2rem;
+    text-align: center;
+    margin-top: 2rem;
 }
 
 /* ===================================
-   CARTÕES E ARTIGOS
-   =================================== */
+   CARTÕES E ARTIGOS
+   =================================== */
 
 article {
-    margin: 2rem 0;
-    padding: 2rem;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
 }
 
 article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 article img {
-    border-radius: var(--border-radius);
-    margin: 1rem 0;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
 }
 
 article header h3,
 article header h4 {
-    color: var(--primary-color); /* Cor padrão para h3 e h4 em fundos claros */
+    color: var(--primary-color); /* Cor padrão para h3 e h4 em fundos claros */
 }
 
 figure {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0;
 }
 
 figcaption {
-    text-align: center;
-    font-style: italic;
-    color: #666;
-    margin-top: 0.5rem;
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5rem;
 }
 
 /* Layout de grid para os cartões de quartos na página inicial */
 .quartos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .quarto-card {
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 1.5rem; /* Espaço para o botão */
-    display: flex; /* Para empurrar o botão para o final */
-    flex-direction: column;
-    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 1.5rem; /* Espaço para o botão */
+    display: flex; /* Para empurrar o botão para o final */
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .quarto-card img {
-    width: 100%;
-    height: 200px; /* Altura fixa para as imagens */
-    object-fit: cover;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    margin-bottom: 1rem;
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-bottom: 1rem;
 }
 
 .quarto-card h3 {
-    color: var(--dark-blue);
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    padding: 0 1rem;
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
 }
 
 .quarto-card p {
-    font-size: 0.95rem;
-    color: #666;
-    padding: 0 1rem;
-    margin-bottom: 1rem;
-    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço restante */
+    font-size: 0.95rem;
+    color: #666;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço restante */
 }
 
 /* Estilo para os detalhes dos quartos (quartos.html) */
 .quarto-detalhe {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
-    gap: 2rem;
-    align-items: flex-start; /* Alinha o conteúdo ao topo */
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+    gap: 2rem;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Esta regra corrige o título do quarto que ficava "preso" no topo */
 /* e garante a cor do texto para ser visível */
 .quarto-detalhe header {
-    flex: 1 1 100%; /* Ocupa toda a largura da section */
-    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
-    color: var(--white); /* Garante que o texto do header seja branco */
-    padding: 1.5rem 2rem;
-    border-radius: var(--border-radius); /* Aplicar border-radius em todos os cantos */
-    margin-bottom: 1rem; /* Apenas um margin-bottom para separar do conteúdo */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    text-align: center;
-    position: static; /* ESSENCIAL: Remove qualquer comportamento sticky ou fixed herdado */
-    top: auto; /* Garante que não haja top fixo */
-    z-index: auto; /* Garante que não haja z-index alto que possa causar sobreposição */
+    flex: 1 1 100%; /* Ocupa toda a largura da section */
+    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
+    color: var(--white); /* Garante que o texto do header seja branco */
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius); /* Aplicar border-radius em todos os cantos */
+    margin-bottom: 1rem; /* Apenas um margin-bottom para separar do conteúdo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+    position: static; /* ESSENCIAL: Remove qualquer comportamento sticky ou fixed herdado */
+    top: auto; /* Garante que não haja top fixo */
+    z-index: auto; /* Garante que não haja z-index alto que possa causar sobreposição */
 }
 
 /* Garante que o H3 dentro do cabeçalho azul seja branco */
 .quarto-detalhe header h3 {
-    color: var(--white);
-    font-size: 2rem;
-    margin-top: 0;
-    border-bottom: none; /* Remove borda padrão */
-    padding-bottom: 0;
+    color: var(--white);
+    font-size: 2rem;
+    margin-top: 0;
+    border-bottom: none; /* Remove borda padrão */
+    padding-bottom: 0;
 }
 /* Garante que o H4 (se existir) dentro do cabeçalho azul também seja branco */
 .quarto-detalhe header h4 {
-    color: var(--white);
+    color: var(--white);
 }
 
 
 .quarto-detalhe img {
-    flex: 1 1 400px; /* Largura mínima de 400px, pode crescer ou diminuir */
-    max-width: 100%; /* Garante que não ultrapasse o container */
-    height: 300px; /* Altura fixa para as imagens de detalhe */
-    object-fit: cover;
-    border-radius: var(--border-radius);
-    margin: 0; /* Remover margin padrão do article img */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex: 1 1 400px; /* Largura mínima de 400px, pode crescer ou diminuir */
+    max-width: 100%; /* Garante que não ultrapasse o container */
+    height: 300px; /* Altura fixa para as imagens de detalhe */
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin: 0; /* Remover margin padrão do article img */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .quarto-info {
-    flex: 1 1 350px; /* Largura mínima de 350px, pode crescer ou diminuir */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Empurra o botão para o final */
+    flex: 1 1 350px; /* Largura mínima de 350px, pode crescer ou diminuir */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para o final */
 }
 
 .quarto-info p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
 }
 
 .quarto-info ul {
-    list-style: disc;
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #555;
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #555;
 }
 
 .quarto-info li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .quarto-info .preco {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--dark-blue);
-    margin-top: 1.5rem;
-    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-top: 1.5rem;
+    text-align: right;
 }
 
 /* ===================================
-   TABELAS
-   =================================== */
+   TABELAS
+   =================================== */
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 table caption {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    padding: 1rem;
-    background-color: var(--light-gray);
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 1rem;
+    background-color: var(--light-gray);
 }
 
 th {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 1rem;
-    text-align: left;
-    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
 }
 
 td {
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
 }
 
 tr:hover {
-    background-color: var(--light-gray);
+    background-color: var(--light-gray);
 }
 
 /* ===================================
-   LISTAS
-   =================================== */
+   LISTAS
+   =================================== */
 
 ul, ol {
-    margin: 1rem 0;
-    padding-left: 2rem;
+    margin: 1rem 0;
+    padding-left: 2rem;
 }
 
 li {
-    margin: 0.5rem 0;
-    line-height: 1.8;
+    margin: 0.5rem 0;
+    line-height: 1.8;
 }
 
 dl {
-    margin: 1rem 0;
+    margin: 1rem 0;
 }
 
 dt {
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 1rem;
 }
 
 dd {
-    margin-left: 2rem;
-    margin-bottom: 0.5rem;
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 /* ===================================
-   GALERIA
-   =================================== */
+   GALERIA
+   =================================== */
 
 #galeria-quartos > article > div,
 #galeria-areas-comuns > article > div,
 #galeria-restaurante > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 /* Estilo para as imagens da galeria */
 #galeria-quartos img,
 #galeria-areas-comuns img,
 #galeria-restaurante img {
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #galeria-quartos img:hover,
 #galeria-areas-comuns img:hover,
 #galeria-restaurante img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* ===================================
-   VÍDEO E ÁUDIO
-   =================================== */
+   VÍDEO E ÁUDIO
+   =================================== */
 
 video, audio {
-    width: 100%;
-    max-width: 800px;
-    margin: 1rem auto;
-    display: block;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    margin: 1rem auto;
+    display: block;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* ===================================
-   LOCALIZAÇÃO / IFRAME
-   =================================== */
+   LOCALIZAÇÃO / IFRAME
+   =================================== */
 
 .map-container {
-    position: relative;
-    padding-bottom: 56.25%; /* Proporção de vídeo 16:9 (altura/largura) */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: var(--light-gray); /* Placeholder */
-    border-radius: var(--border-radius);
-    margin: 2rem 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção de vídeo 16:9 (altura/largura) */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: var(--light-gray); /* Placeholder */
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .map-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    border-radius: var(--border-radius);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--border-radius);
 }
 
 /* ===================================
-   ENDEREÇO
-   =================================== */
+   ENDEREÇO
+   =================================== */
 
 address {
-    font-style: normal;
-    line-height: 1.8;
-    margin: 1rem 0;
+    font-style: normal;
+    line-height: 1.8;
+    margin: 1rem 0;
 }
 
 /* ===================================
-   LINKS E BOTÕES CTA (Botões Globais)
-   =================================== */
+   LINKS E BOTÕES CTA (Botões Globais)
+   =================================== */
 
 /* Estilo para botões de ação principal */
 .btn-primary {
-    display: inline-block;
-    background-color: var(--primary-color); /* Azul padrão */
-    color: white;
-    padding: 12px 25px; /* Aumentado */
-    border: none;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-size: 1.1rem; /* Aumentado */
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px; /* Para dar espaço */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: inline-block;
+    background-color: var(--primary-color); /* Azul padrão */
+    color: white;
+    padding: 12px 25px; /* Aumentado */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1.1rem; /* Aumentado */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px; /* Para dar espaço */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .btn-primary:hover {
-    background-color: var(--dark-blue); /* Azul mais escuro no hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background-color: var(--dark-blue); /* Azul mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 /* Estilo para botões secundários (ex: Saiba Mais) */
 .btn-secondary {
-    display: inline-block;
-    background-color: #6c757d; /* Cinza */
-    color: white;
-    padding: 10px 20px; /* Ajustado */
-    border: none;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-size: 1rem; /* Ajustado */
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-    margin-top: 15px; /* Para separar do texto acima */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: inline-block;
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 10px 20px; /* Ajustado */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1rem; /* Ajustado */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    margin-top: 15px; /* Para separar do texto acima */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268; /* Cinza mais escuro no hover */
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Estilo específico para o botão de reserva nos detalhes do quarto */
 .btn-reservar {
-    display: inline-block;
-    background-color: #28a745; /* Verde */
-    color: white;
-    padding: 14px 30px; /* Mais destaque */
-    border: none;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-size: 1.2rem; /* Mais destaque */
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-    margin-top: 20px; /* Mais destaque */
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    width: 100%; /* Ocupa a largura total da coluna de info */
-    box-sizing: border-box;
+    display: inline-block;
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 14px 30px; /* Mais destaque */
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1.2rem; /* Mais destaque */
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    margin-top: 20px; /* Mais destaque */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 100%; /* Ocupa a largura total da coluna de info */
+    box-sizing: border-box;
 }
 
 .btn-reservar:hover {
-    background-color: #218838; /* Verde mais escuro no hover */
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    background-color: #218838; /* Verde mais escuro no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
 /* Ajustes para layout dos botões em cards */
 .quarto-card a.btn-secondary {
-    margin-top: auto; /* Empurra o botão para a parte inferior do card */
-    width: fit-content; /* Ajusta a largura ao conteúdo */
-    align-self: center; /* Centraliza horizontalmente */
+    margin-top: auto; /* Empurra o botão para a parte inferior do card */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    align-self: center; /* Centraliza horizontalmente */
 }
 
 .quarto-detalhe .quarto-info a.btn-reservar {
-    margin-top: 20px; /* Espaço do botão */
+    margin-top: 20px; /* Espaço do botão */
 }
 
 section#cta,
@@ -916,10 +916,10 @@ section#ajuda,
 section#header-promocoes,
 section#header-guia,
 section#header-quartos { /* Adicionado #header-quartos aqui */
-    text-align: center;
-    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
-    color: var(--white); /* Garante que o texto dentro destas seções seja branco */
-    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+    color: var(--white); /* Garante que o texto dentro destas seções seja branco */
+    padding: 3rem 2rem;
 }
 
 section#cta h2,
@@ -927,101 +927,101 @@ section#cta-galeria h2,
 section#header-promocoes h2,
 section#header-guia h2,
 section#header-quartos h2 { /* Adicionado #header-quartos aqui */
-    color: var(--white);
-    border-bottom: 3px solid var(--secondary-color);
-    display: inline-block;
-    padding-bottom: 0.5rem;
+    color: var(--white);
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 0.5rem;
 }
 
 section#header-promocoes p,
 section#header-guia p,
 section#header-quartos p { /* Adicionado #header-quartos aqui, caso tenha parágrafo */
-    color: var(--white);
-    max-width: 800px;
-    margin: 1rem auto 0;
-    font-size: 1.1rem;
-    opacity: 0.9;
+    color: var(--white);
+    max-width: 800px;
+    margin: 1rem auto 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 /* NOVO ESTILO: Cabeçalhos internos das seções de promoção (Natal e Ano Novo) */
 #promocao-natal header,
 #promocao-anonovo header {
-    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color));
-    color: var(--white); /* Cor padrão do texto no cabeçalho será branca */
-    padding: 1.5rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    margin: -2rem -2rem 1rem -2rem; /* Ajusta para preencher a largura da section */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    text-align: center;
+    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color));
+    color: var(--white); /* Cor padrão do texto no cabeçalho será branca */
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin: -2rem -2rem 1rem -2rem; /* Ajusta para preencher a largura da section */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
 #promocao-natal header h3,
 #promocao-anonovo header h3 {
-    color: var(--white); /* Garante que o H3 seja branco no fundo escuro */
-    margin-top: 0;
-    border-bottom: none;
-    padding-bottom: 0;
+    color: var(--white); /* Garante que o H3 seja branco no fundo escuro */
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 #promocao-natal header h4,
 #promocao-anonovo header h4 {
-    color: var(--secondary-color); /* H4 em amarelo para um bom contraste e destaque */
-    margin-bottom: 0;
-    font-size: 1.3rem;
+    color: var(--secondary-color); /* H4 em amarelo para um bom contraste e destaque */
+    margin-bottom: 0;
+    font-size: 1.3rem;
 }
 
 /* ===================================
-   FOOTER
-   =================================== */
+   FOOTER
+   =================================== */
 
 footer {
-    background: linear-gradient(135deg, var(--dark-gray), #1a1a1a);
-    color: var(--white); /* Cor geral do texto do footer é branca */
-    padding: 3rem 2rem 1rem;
-    margin-top: 4rem;
+    background: linear-gradient(135deg, var(--dark-gray), #1a1a1a);
+    color: var(--white); /* Cor geral do texto do footer é branca */
+    padding: 3rem 2rem 1rem;
+    margin-top: 4rem;
 }
 
 footer > div:first-child {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
 footer h3 {
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
 }
 
 footer nav ul {
-    list-style: none;
-    padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 footer nav a {
-    color: var(--white); /* Links do footer brancos */
-    display: block;
-    padding: 0.5rem 0;
-    transition: var(--transition);
+    color: var(--white); /* Links do footer brancos */
+    display: block;
+    padding: 0.5rem 0;
+    transition: var(--transition);
 }
 
 footer nav a:hover {
-    color: var(--secondary-color);
-    padding-left: 0.5rem;
+    color: var(--secondary-color);
+    padding-left: 0.5rem;
 }
 
 footer hr {
-    margin: 2rem 0;
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 footer > div:last-child {
-    text-align: center;
-    font-size: 0.9rem;
-    opacity: 0.8;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* Correção: Garante que o texto dentro das sections do footer seja branco */
@@ -1030,15 +1030,15 @@ footer section ul,
 footer section li,
 footer section address p,
 footer section address a { /* Adicionado 'address a' para os links de tel/email */
-    color: var(--white);
+    color: var(--white);
 }
 
 /* Correção: Remove o fundo branco e a sombra das sections dentro do footer */
 footer section {
-    background-color: transparent; /* Fundo transparente */
-    box-shadow: none; /* Remove sombra */
-    padding: 0; /* Remove padding extra */
-    margin: 0; /* Remove margem extra */
+    background-color: transparent; /* Fundo transparente */
+    box-shadow: none; /* Remove sombra */
+    padding: 0; /* Remove padding extra */
+    margin: 0; /* Remove margem extra */
 }
 
 
@@ -1047,208 +1047,208 @@ footer section {
 
 
 /* ===================================
-   RESPONSIVIDADE
-   =================================== */
+   RESPONSIVIDADE
+   =================================== */
 
 @media (max-width: 992px) {
-    .quarto-detalhe {
-        flex-direction: column;
-        align-items: center;
-    }
+    .quarto-detalhe {
+        flex-direction: column;
+        align-items: center;
+    }
 
-    .quarto-detalhe img {
-        height: 250px;
-        margin-bottom: 1.5rem;
-    }
+    .quarto-detalhe img {
+        height: 250px;
+        margin-bottom: 1.5rem;
+    }
 
-    .quarto-detalhe .quarto-info {
-        text-align: center;
-    }
+    .quarto-detalhe .quarto-info {
+        text-align: center;
+    }
 
-    .quarto-info .preco {
-        text-align: center;
-    }
+    .quarto-info .preco {
+        text-align: center;
+    }
 }
 
 
 @media (max-width: 768px) {
-    header > .header-content { /* Ajustado para o novo wrapper */
-        flex-wrap: wrap; /* Permite que o hambúrguer quebre a linha se necessário */
-        justify-content: space-between; /* Espaço entre os itens */
-        align-items: center;
-    }
+    header > .header-content { /* Ajustado para o novo wrapper */
+        flex-wrap: wrap; /* Permite que o hambúrguer quebre a linha se necessário */
+        justify-content: space-between; /* Espaço entre os itens */
+        align-items: center;
+    }
 
-    header h1 {
-        font-size: 1.5rem;
-M       margin-right: auto; /* Empurra o logo/h1 para a esquerda */
-    }
-    
-    header > .header-content > p { /* Ajustado para o novo wrapper */
-        display: none; /* Esconde o slogan em telas menores para economizar espaço */
-    }
+    header h1 {
+        font-size: 1.5rem;
+        margin-right: auto; /* Empurra o logo/h1 para a esquerda */
+    }
+    
+    header > .header-content > p { /* Ajustado para o novo wrapper */
+        display: none; /* Esconde o slogan em telas menores para economizar espaço */
+    }
 
-    .hamburger-menu {
-        display: flex; /* Mostra o botão de hambúrguer em telas menores */
-    }
-    
-    nav {
-        margin-top: 0; /* Remove a margem superior da nav para ficar abaixo do header-content */
-        width: 100%; /* Ocupa toda a largura */
-        position: absolute; /* Posição absoluta para cobrir o conteúdo */
-        top: 100%; /* Começa abaixo do header principal */
-        left: 0;
-        background-color: var(--dark-blue); /* Fundo para o menu aberto */
-        max-height: 0; /* Começa escondido */
-        overflow: hidden; /* Esconde o conteúdo que transborda */
-        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transição suave */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+    .hamburger-menu {
+        display: flex; /* Mostra o botão de hambúrguer em telas menores */
+    }
+    
+    nav {
+        margin-top: 0; /* Remove a margem superior da nav para ficar abaixo do header-content */
+        width: 100%; /* Ocupa toda a largura */
+        position: absolute; /* Posição absoluta para cobrir o conteúdo */
+        top: 100%; /* Começa abaixo do header principal */
+        left: 0;
+        background-color: var(--dark-blue); /* Fundo para o menu aberto */
+        max-height: 0; /* Começa escondido */
+        overflow: hidden; /* Esconde o conteúdo que transborda */
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transição suave */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 
-    nav.active { /* Quando o JS adicionar a classe 'active' */
-        max-height: 500px; /* Altura suficiente para mostrar o menu */
-        padding-bottom: 1rem;
-    }
+    nav.active { /* Quando o JS adicionar a classe 'active' */
+        max-height: 500px; /* Altura suficiente para mostrar o menu */
+        padding-bottom: 1rem;
+    }
 
-    .nav-list { /* Alterado para a nova classe 'nav-list' */
-        flex-direction: column;
-        align-items: flex-start; /* Alinha os itens à esquerda */
-        padding: 0 2rem;
-    }
-    
-    .nav-list a { /* Alterado para a nova classe 'nav-list' */
-        padding: 1rem 0; /* Mais espaçamento vertical */
-        width: 100%; /* Ocupa a largura total */
-      M text-align: left;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
-    }
+    .nav-list { /* Alterado para a nova classe 'nav-list' */
+        flex-direction: column;
+        align-items: flex-start; /* Alinha os itens à esquerda */
+        padding: 0 2rem;
+    }
+    
+    .nav-list a { /* Alterado para a nova classe 'nav-list' */
+        padding: 1rem 0; /* Mais espaçamento vertical */
+        width: 100%; /* Ocupa a largura total */
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
+    }
 
-    .nav-list li:last-child a {
-        border-bottom: none; /* Remove a borda do último item */
-    }
+    .nav-list li:last-child a {
+        border-bottom: none; /* Remove a borda do último item */
+    }
 
-    .nav-list a::after { /* Remove a animação de underline para mobile */
-        display: none;
-    }
+    .nav-list a::after { /* Remove a animação de underline para mobile */
+        display: none;
+    }
 
-    .nav-list a:hover {
-        padding-left: 0.5rem; /* Reintroduz o padding-left no hover para mobile */
-    }
-    
-    .carousel-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .carousel-content p {
-        font-size: 1.0rem; /* Ajuste para melhor legibilidade */
-    }
-    
-    .carousel-btn {
-        padding: 0.5rem;
-        font-size: 1.5rem;
-    }
-    
-    main {
-        padding: 0 1rem;
-    }
-    
-    section {
-        padding: 1.5rem;
-    }
-    
-    table {
-        font-size: 0.9rem;
-    }
-    
-    th, td {
-        padding: 0.5rem;
-    }
+    .nav-list a:hover {
+        padding-left: 0.5rem; /* Reintroduz o padding-left no hover para mobile */
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .carousel-content p {
+        font-size: 1.0rem; /* Ajuste para melhor legibilidade */
+    }
+    
+    .carousel-btn {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+    }
+    
+    main {
+        padding: 0 1rem;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 0.5rem;
+    }
 
-    .quartos-grid {
-        grid-template-columns: 1fr;
-    }
+    .quartos-grid {
+        grid-template-columns: 1fr;
+    }
 
-    .quarto-card img {
-        height: 180px;
-    }
+    .quarto-card img {
+        height: 180px;
+    }
 
-    .quarto-detalhe img {
-        width: 100%;
-        height: 200px;
-    }
+    .quarto-detalhe img {
+        width: 100%;
+        height: 200px;
+    }
 
-    .quarto-detalhe .quarto-info ul {
-        text-align: left;
-        margin: 1.5rem auto;
-        max-width: 300px;
-    }
-    
-    .btn-reservar {
-        font-size: 1.1rem;
-        padding: 12px 20px;
-    }
+    .quarto-detalhe .quarto-info ul {
+        text-align: left;
+        margin: 1.5rem auto;
+        max-width: 300px;
+    }
+    
+    .btn-reservar {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
 
-    footer > div:first-child {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
+    footer > div:first-child {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-    footer nav ul {
-        align-items: center;
-    }
+    footer nav ul {
+        align-items: center;
+    }
 
-    footer nav a:hover {
-        padding-left: 0;
-    }
+    footer nav a:hover {
+        padding-left: 0;
+    }
 }
 
 @media (max-width: 480px) {
-    .carousel-container {
-        height: 300px;
-    }
-    
-    .carousel-content {
-        padding: 1rem 1.5rem;
-    }
-    
-    .carousel-content h2 {
-        font-size: 1.3rem;
-    }
-    
-    .carousel-content p {
-        font-size: 0.9rem;
-    }
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .carousel-content {
+        padding: 1rem 1.5rem;
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .carousel-content p {
+        font-size: 0.9rem;
+    }
 }
 
 /* ===================================
-   ANIMAÇÕES
-   =================================== */
+   ANIMAÇÕES
+   =================================== */
 
 @keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .animate-left {
-    animation: slideInFromLeft 0.8s ease-out;
+    animation: slideInFromLeft 0.8s ease-out;
 }
 
 .animate-right {
-    animation: slideInFromRight 0.8s ease-out;
+    animation: slideInFromRight 0.8s ease-out;
 }
