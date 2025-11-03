@@ -7,7 +7,6 @@
     <title>Age Hotel - Conforto e Praticidade na Zona Leste de SP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
 </head>
 <body>
     <header>
@@ -34,39 +33,72 @@
 
     <main>
         <section id="hero">
-            </section>
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="img/banner1.jpg" alt="Interior moderno do hotel">
+                    <div class="carousel-content">
+                        <h2>Sua Estadia Perfeita Começa Aqui</h2>
+                        <p>Descubra o conforto e a praticidade no coração da Zona Leste.</p>
+                        <a href="reservas.html" class="btn-primary">Reserve Já</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/banner2.jpg" alt="Quarto confortável e aconchegante">
+                    <div class="carousel-content">
+                        <h2>Conforto e Qualidade em Cada Detalhe</h2>
+                        <p>Quartos equipados para o seu descanso e bem-estar.</p>
+                        <a href="quartos.html" class="btn-primary">Nossas Acomodações</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/banner3.jpg" alt="Localização estratégica próxima a pontos importantes">
+                    <div class="carousel-content">
+                        <h2>Localização Privilegiada</h2>
+                        <p>Perto de Guarulhos e da Arena Corinthians, ideal para sua viagem.</p>
+                        <a href="localizacao.html" class="btn-primary">Como Chegar</a>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Slide Anterior">&#10094;</button>
+                <button class="carousel-btn next" aria-label="Próximo Slide">&#10095;</button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide-index="0" aria-label="Ir para o slide 1"></span>
+                    <span class="indicator" data-slide-index="1" aria-label="Ir para o slide 2"></span>
+                    <span class="indicator" data-slide-index="2" aria-label="Ir para o slide 3"></span>
+                </div>
+            </div>
+        </section>
 
         <section id="bem-vindo">
             <h2>Bem-vindo ao Age Hotel</h2>
             <p>O Age Hotel em São Miguel, Zona Leste de São Paulo, é um hotel 3 estrelas com foco em praticidade e acessibilidade. Oferecemos quartos confortáveis para não fumantes com TV, Wi-Fi gratuito e banheiro privativo. Nossos hóspedes contam com estacionamento privativo, recepção 24 horas, café da manhã estilo buffet e serviço de quarto. Estamos estrategicamente localizados, próximos ao Aeroporto de Guarulhos (cerca de 8 km) e à Arena Corinthians (6-7 km), ideal para quem precisa se deslocar para essas regiões.</p>
         </section>
 
-        <section id="servicos-destaque">
+        <section id="servicos-destaque" class="servicos-grid">
             <h2>Destaques do Hotel</h2>
-            <div class="servico-item">
+            <article class="servico-item">
                 <h3><i class="fas fa-star"></i> Categoria 3 Estrelas</h3>
                 <p>Qualidade e serviços confiáveis para sua estadia.</p>
-            </div>
-            <div class="servico-item">
+            </article>
+            <article class="servico-item">
                 <h3><i class="fas fa-map-marker-alt"></i> Localização Estratégica</h3>
                 <p>A 8 km do Aeroporto de Guarulhos e 6-7 km da Arena Corinthians.</p>
-            </div>
-            <div class="servico-item">
+            </article>
+            <article class="servico-item">
                 <h3><i class="fas fa-wifi"></i> Wi-Fi Gratuito</h3>
                 <p>Conexão de alta velocidade em todas as áreas do hotel e nos quartos.</p>
-            </div>
-            <div class="servico-item">
+            </article>
+            <article class="servico-item">
                 <h3><i class="fas fa-parking"></i> Estacionamento Privativo</h3>
                 <p>Segurança e comodidade para seu veículo.</p>
-            </div>
-            <div class="servico-item">
+            </article>
+            <article class="servico-item">
                 <h3><i class="fas fa-coffee"></i> Café da Manhã Buffet</h3>
                 <p>Comece seu dia com um café da manhã completo e variado.</p>
-            </div>
-            <div class="servico-item">
+            </article>
+            <article class="servico-item">
                 <h3><i class="fas fa-concierge-bell"></i> Recepção 24h</h3>
                 <p>Sempre à disposição para atender suas necessidades.</p>
-            </div>
+            </article>
         </section>
 
         <section id="quartos-recentes">
@@ -100,7 +132,7 @@
         <div>
             <section>
                 <h3>Sobre o Age Hotel</h3>
-                <p>Oferecendo a melhor experiência em hospitalidade.</p>
+                <p>O Age Hotel é um estabelecimento dedicado a oferecer uma experiência de hospedagem excepcional, combinando conforto, praticidade e um atendimento de qualidade na Zona Leste de São Paulo.</p>
             </section>
 
             <section>
@@ -118,9 +150,10 @@
             <section>
                 <h3>Contato</h3>
                 <address>
-                    <p>Rua Palmeira de Leque - Av. São Miguel, 45</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Palmeira de Leque - Av. São Miguel, 45</p>
                     <p>Vila Robertina, São Paulo - SP, CEP: 08061-430</p>
-                    <p>Tel: <a href="tel:+551129564153">(11) 2956-4153</a></p>
+                    <p><i class="fas fa-phone-alt"></i> Tel: <a href="tel:+551129564153">(11) 2956-4153</a></p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:contato@agehotel.com.br">contato@agehotel.com.br</a></p>
                 </address>
             </section>
         </div>
@@ -131,8 +164,8 @@
             <p>© 2024 Age Hotel. Todos os direitos reservados.</p>
         </div>
     </footer>
+    
+    <script src="js/carousel.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
-
-
