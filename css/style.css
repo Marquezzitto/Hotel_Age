@@ -54,7 +54,7 @@ header {
     z-index: 1000;
 }
 
-header > div:first-child {
+header > .header-content { /* Usando o novo wrapper */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -75,7 +75,7 @@ header h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-header > div:first-child > p {
+header > .header-content > p { /* Ajustado para o novo wrapper */
     font-size: 0.9rem;
     font-style: italic;
     opacity: 0.9;
@@ -88,7 +88,7 @@ nav {
     margin-top: 1rem;
 }
 
-nav ul {
+.nav-list { /* Alterado para a nova classe 'nav-list' */
     list-style: none;
     display: flex;
     justify-content: center;
@@ -98,11 +98,11 @@ nav ul {
     padding: 0 1rem;
 }
 
-nav li {
+.nav-list li {
     margin: 0;
 }
 
-nav a {
+.nav-list a { /* Alterado para a nova classe 'nav-list' */
     display: block;
     padding: 1rem 1.5rem;
     color: var(--white);
@@ -111,13 +111,13 @@ nav a {
     position: relative;
 }
 
-nav a:hover,
-nav a[aria-current="page"] {
+.nav-list a:hover, /* Alterado para a nova classe 'nav-list' */
+.nav-list a[aria-current="page"] {
     background-color: var(--secondary-color);
     color: var(--dark-blue);
 }
 
-nav a::after {
+.nav-list a::after { /* Alterado para a nova classe 'nav-list' */
     content: '';
     position: absolute;
     bottom: 0;
@@ -129,9 +129,46 @@ nav a::after {
     transform: translateX(-50%);
 }
 
-nav a:hover::after {
+.nav-list a:hover::after { /* Alterado para a nova classe 'nav-list' */
     width: 80%;
 }
+
+/* Botão de Hambúrguer */
+.hamburger-menu {
+    display: none; /* Esconde por padrão em telas maiores */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto; /* Empurra o botão para a direita */
+    z-index: 1001; /* Garante que fique acima de tudo */
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Animação do botão de hambúrguer */
+.hamburger-menu.open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
 
 /* ===================================
    CAROUSEL / BANNER PRINCIPAL
@@ -579,7 +616,7 @@ figcaption {
     text-align: center;
     position: static; /* ESSENCIAL: Remove qualquer comportamento sticky ou fixed herdado */
     top: auto; /* Garante que não haja top fixo */
-    z-index: auto; /* Adicionado: Garante que não haja z-index alto que possa causar sobreposição */
+    z-index: auto; /* Garante que não haja z-index alto que possa causar sobreposição */
 }
 
 /* Garante que o H3 dentro do cabeçalho azul seja branco */
@@ -988,7 +1025,8 @@ footer > div:last-child {
 footer section p,
 footer section ul,
 footer section li,
-footer section address p {
+footer section address p,
+footer section address a { /* Adicionado 'address a' para os links de tel/email */
     color: var(--white);
 }
 
@@ -1033,28 +1071,66 @@ footer section p[rel="author"] {
 
 
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    header > div:first-child {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    header > div:first-child > p {
-        margin-top: -0.5rem;
-    }
-    
-    nav ul {
-        flex-direction: column;
+    header > .header-content { /* Ajustado para o novo wrapper */
+        flex-wrap: wrap; /* Permite que o hambúrguer quebre a linha se necessário */
+        justify-content: space-between; /* Espaço entre os itens */
         align-items: center;
     }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin-right: auto; /* Empurra o logo/h1 para a esquerda */
+    }
     
-    nav a {
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
+    header > .header-content > p { /* Ajustado para o novo wrapper */
+        display: none; /* Esconde o slogan em telas menores para economizar espaço */
+    }
+
+    .hamburger-menu {
+        display: flex; /* Mostra o botão de hambúrguer em telas menores */
+    }
+    
+    nav {
+        margin-top: 0; /* Remove a margem superior da nav para ficar abaixo do header-content */
+        width: 100%; /* Ocupa toda a largura */
+        position: absolute; /* Posição absoluta para cobrir o conteúdo */
+        top: 100%; /* Começa abaixo do header principal */
+        left: 0;
+        background-color: var(--dark-blue); /* Fundo para o menu aberto */
+        max-height: 0; /* Começa escondido */
+        overflow: hidden; /* Esconde o conteúdo que transborda */
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transição suave */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    nav.active { /* Quando o JS adicionar a classe 'active' */
+        max-height: 500px; /* Altura suficiente para mostrar o menu */
+        padding-bottom: 1rem;
+    }
+
+    .nav-list { /* Alterado para a nova classe 'nav-list' */
+        flex-direction: column;
+        align-items: flex-start; /* Alinha os itens à esquerda */
+        padding: 0 2rem;
+    }
+    
+    .nav-list a { /* Alterado para a nova classe 'nav-list' */
+        padding: 1rem 0; /* Mais espaçamento vertical */
+        width: 100%; /* Ocupa a largura total */
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
+    }
+
+    .nav-list li:last-child a {
+        border-bottom: none; /* Remove a borda do último item */
+    }
+
+    .nav-list a::after { /* Remove a animação de underline para mobile */
+        display: none;
+    }
+
+    .nav-list a:hover {
+        padding-left: 0.5rem; /* Reintroduz o padding-left no hover para mobile */
     }
     
     .carousel-content h2 {
