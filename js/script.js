@@ -399,6 +399,72 @@ function calcularPrecoReserva() {
     checkin.addEventListener('change', calcular);
     checkout.addEventListener('change', calcular);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Para o Carousel (se você ainda o tiver e quiser mantê-lo)
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicatorsContainer = document.querySelector('.carousel-indicators');
+        let currentSlide = 0;
+
+        // Cria os indicadores
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.remove('active');
+                if (i === index) indicator.classList.add('active');
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = (index + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        document.querySelector('.carousel-btn.next').addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+
+        document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+
+        // Autoplay
+        let slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5000); // Muda a cada 5 segundos
+
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carouselContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5000);
+        });
+
+        showSlide(currentSlide);
+    }
+
+
+    // --- Funcionalidade do Menu Hambúrguer ---
+    const hamburgerBtn = document.querySelector('.hamburger-menu');
+    const navList = document.querySelector('.nav-list');
+
+    if (hamburgerBtn && navList) {
+        hamburgerBtn.addEventListener('click', () => {
+            navList.classList.toggle('active'); // Adiciona/remove a classe 'active' ao menu
+            hamburgerBtn.classList.toggle('open'); // Adiciona/remove a classe 'open' ao botão para animá-lo
+        });
+    }
+
+});
 
 /* ========================================
    5. FORMATAÇÃO AUTOMÁTICA DE TELEFONE
@@ -442,6 +508,7 @@ console.log('  - Validação de Formulários');
 console.log('  - Botão Voltar ao Topo');
 console.log('  - Cálculo de Preço');
 console.log('  - Formatação de Telefone');
+
 
 
 
