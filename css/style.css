@@ -291,13 +291,13 @@ section h2 {
 }
 
 section h3 {
-    color: var(--dark-blue);
+    color: var(--dark-blue); /* Cor padrão para h3 em fundos claros */
     font-size: 1.5rem;
     margin: 1.5rem 0 1rem;
 }
 
 section h4 {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Cor padrão para h4 em fundos claros */
     font-size: 1.2rem;
     margin: 1rem 0 0.5rem;
 }
@@ -566,18 +566,24 @@ figcaption {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* NOVO: Estilo para o cabeçalho azul escuro dos detalhes do quarto */
 .quarto-detalhe header {
-    flex: 1 1 100%; /* Ocupa toda a largura, mas pode diminuir */
-    padding: 0; /* Remover padding padrão do article/header */
-    margin-bottom: 1rem;
+    flex: 1 1 100%; /* Ocupa toda a largura da section */
+    background: linear-gradient(90deg, var(--dark-blue), var(--primary-color)); /* Fundo azul mais escuro */
+    color: var(--white); /* Cor do texto branca */
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Bordas arredondadas no topo */
+    margin: -2rem -2rem 1rem -2rem; /* Negativo para esticar até a borda da section */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
 .quarto-detalhe header h3 {
+    color: var(--white); /* Garante que o H3 dentro do cabeçalho azul seja branco */
     font-size: 2rem;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 0;
+    border-bottom: none; /* Remove borda padrão */
+    padding-bottom: 0;
 }
 
 .quarto-detalhe img {
@@ -858,7 +864,8 @@ section#cta,
 section#cta-galeria,
 section#ajuda,
 section#header-promocoes,
-section#header-guia {
+section#header-guia,
+section#header-quartos { /* Adicionado #header-quartos aqui */
     text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
     color: var(--white); /* Garante que o texto dentro destas seções seja branco */
@@ -868,7 +875,8 @@ section#header-guia {
 section#cta h2,
 section#cta-galeria h2,
 section#header-promocoes h2,
-section#header-guia h2 {
+section#header-guia h2,
+section#header-quartos h2 { /* Adicionado #header-quartos aqui */
     color: var(--white);
     border-bottom: 3px solid var(--secondary-color);
     display: inline-block;
@@ -876,7 +884,8 @@ section#header-guia h2 {
 }
 
 section#header-promocoes p,
-section#header-guia p {
+section#header-guia p,
+section#header-quartos p { /* Adicionado #header-quartos aqui, caso tenha parágrafo */
     color: var(--white);
     max-width: 800px;
     margin: 1rem auto 0;
