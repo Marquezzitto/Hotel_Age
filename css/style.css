@@ -86,14 +86,22 @@ header > .header-content > p { /* Slogan */
 nav {
     background-color: rgba(0, 0, 0, 0.2);
     margin-top: 0;
+    display: block;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    transition: none;
 }
 
 .nav-list {
     list-style: none;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    max-width: 2800px;
+    /* >>> ALTERAÇÃO CHAVE AQUI <<< */
+    /* Removido flex-wrap: wrap; para forçar todos os itens a ficarem na mesma linha */
+    /* Adicionado align-items: center para centralizar verticalmente, caso haja alturas diferentes */
+    align-items: center; 
+    max-width: 2800px; /* Mantém largura máxima, mas os itens não vão quebrar */
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -104,11 +112,14 @@ nav {
 
 .nav-list a {
     display: block;
-    padding: 0.5rem 1.5rem;
+    /* >>> POSSÍVEL AJUSTE AQUI <<< */
+    /* Se os links ainda quebrarem, reduza o padding horizontal */
+    padding: 0.5rem 1rem; /* Reduzido de 1.5rem para 1rem para testar */
     color: var(--white);
     font-weight: 500;
     transition: var(--transition);
     position: relative;
+    white-space: nowrap; /* Impede que o texto dentro do link quebre */
 }
 
 .nav-list a:hover,
@@ -1088,47 +1099,50 @@ footer section {
         display: flex; /* Mostra o botão de hambúrguer em telas menores */
     }
     
+    /* Regras para o menu responsivo quando fechado */
     nav {
-        margin-top: 0; /* Remove a margem superior da nav para ficar abaixo do header-content */
-        width: 100%; /* Ocupa toda a largura */
-        position: absolute; /* Posição absoluta para cobrir o conteúdo */
-        top: 100%; /* Começa abaixo do header principal */
+        margin-top: 0; 
+        width: 100%; 
+        position: absolute; 
+        top: 100%; 
         left: 0;
-        background-color: var(--dark-blue); /* Fundo para o menu aberto */
+        background-color: var(--dark-blue); 
         max-height: 0; /* Começa escondido */
-        overflow: hidden; /* Esconde o conteúdo que transborda */
-        transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transição suave */
+        overflow: hidden; 
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out; 
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1000; /* Garante que a nav esteja sobre o conteúdo da página */
     }
 
-    nav.active { /* Quando o JS adicionar a classe 'active' */
+    /* Regras para o menu responsivo quando ABERTO (com a classe .active do JS) */
+    nav.active { 
         max-height: 500px; /* Altura suficiente para mostrar o menu */
         padding-bottom: 1rem;
     }
 
-    .nav-list { /* Alterado para a nova classe 'nav-list' */
-        flex-direction: column;
-        align-items: flex-start; /* Alinha os itens à esquerda */
+    .nav-list { 
+        flex-direction: column; /* Menu em coluna quando ativo em mobile */
+        align-items: flex-start; 
         padding: 0 2rem;
     }
     
-    .nav-list a { /* Alterado para a nova classe 'nav-list' */
-        padding: 1rem 0; /* Mais espaçamento vertical */
-        width: 100%; /* Ocupa a largura total */
+    .nav-list a { 
+        padding: 1rem 0; 
+        width: 100%; 
         text-align: left;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
     }
 
     .nav-list li:last-child a {
-        border-bottom: none; /* Remove a borda do último item */
+        border-bottom: none; 
     }
 
-    .nav-list a::after { /* Remove a animação de underline para mobile */
-        display: none;
+    .nav-list a::after { 
+        display: none; /* Remove a animação de underline para mobile */
     }
 
     .nav-list a:hover {
-        padding-left: 0.5rem; /* Reintroduz o padding-left no hover para mobile */
+        padding-left: 0.5rem; 
     }
     
     .carousel-content h2 {
@@ -1136,7 +1150,7 @@ footer section {
     }
     
     .carousel-content p {
-        font-size: 1.0rem; /* Ajuste para melhor legibilidade */
+        font-size: 1.0rem; 
     }
     
     .carousel-btn {
